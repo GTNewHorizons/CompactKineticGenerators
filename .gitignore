@@ -1,12 +1,104 @@
-*.class
+# Editors #
+## Visual Studio Code ##
+### Workspace Folder ###
+.vscode/*
 
-# Mobile Tools for Java (J2ME)
-.mtj.tmp/
+### Local History ###
+.history/
 
-# Package Files #
-*.jar
-*.war
-*.ear
+## Eclipse ##
+.project
+.classpath
+.settings/
 
-# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
-hs_err_pid*
+## Vim ##
+### Swap ###
+[._]*.s[a-v][a-z]
+[._]*.sw[a-p]
+[._]*.s[a-rt-v][a-z]
+[._]*.ss[a-gi-z]
+[._]sw[a-p]
+
+### Session ###
+Session.vim
+Sessionx.vim
+
+### Temporary Files ###
+.netrwhist
+*~
+
+### Auto-generated Tag Files ###
+tags
+
+### Undo Persistence ###
+[._]*.un~
+
+## Eclipse ##
+### Core ###
+.classpath
+.factorypath
+.project
+.settings/
+
+## IDEA ##
+### Core ###
+.idea/
+
+# Logs #
+*.log*
+
+# Environment #
+## General ##
+*.env*
+
+## JEnv ##
+.java-version
+
+## Gradle ##
+user.properties
+
+# Artifacts #
+## Gradle ##
+bin/
+build/
+.gradle/
+
+# Debugging #
+## Gradle ##
+run/
+bin/
+out/
+
+# OS-Specific #
+## macOS ##
+*.DS_Store
+
+## Linux ##
+*.sh
+*.zsh
+*.fish
+*.ksh
+
+## Windows ##
+*.bat
+*.cmd
+*.ps1
+*.psm1
+*.psd1
+
+# Scripts #
+## Gradle ##
+!gradlew.bat
+!gradlew
+
+### Local Build Script Addons ###
+addon.local.gradle
+addon.local.gradle.kts
+addon.late.local.gradle
+addon.late.local.gradle.kts
+
+# Misc. #
+*.iml
+*.ipr
+*.iws
+layout.json

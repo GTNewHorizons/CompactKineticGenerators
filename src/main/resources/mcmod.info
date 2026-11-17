@@ -1,10 +1,10 @@
 [
 {
-  "modid": "compactkineticgenerators",
-  "name": "Compact Kinetic Wind and Water Generators",
+  "modid": "${modId}",
+  "name": "${modName}",
   "description": "Kinetic Wind and Water Generator compact version!",
-  "version": "",
-  "mcversion": "",
+  "version": "${modVersion}",
+  "mcversion": "${minecraftVersion}",
   "logoFile": "",
   "url": "https://www.youtube.com/user/lulan222/",
   "updateUrl": "",
