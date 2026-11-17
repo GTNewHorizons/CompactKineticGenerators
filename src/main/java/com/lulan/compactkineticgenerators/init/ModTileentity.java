@@ -16,25 +16,23 @@ import com.lulan.compactkineticgenerators.tileentity.TileCkwmM;
 import cpw.mods.fml.common.registry.GameRegistry;
 
 public class ModTileentity {
-	
-	public static void init() {
-		//wind mills
-		GameRegistry.registerTileEntity(TileCkwmL.class, "TileEntityCkwmL");
-		GameRegistry.registerTileEntity(TileCkwmM.class, "TileEntityCkwmM");
-		GameRegistry.registerTileEntity(TileCkwmH.class, "TileEntityCkwmH");
-		GameRegistry.registerTileEntity(TileCkwmE.class, "TileEntityCkwmE");
-		//water mills
-		GameRegistry.registerTileEntity(TileCkwaL.class, "TileEntityCkwaL");
-		GameRegistry.registerTileEntity(TileCkwaM.class, "TileEntityCkwaM");
-		GameRegistry.registerTileEntity(TileCkwaH.class, "TileEntityCkwaH");
-		GameRegistry.registerTileEntity(TileCkwaE.class, "TileEntityCkwaE");
-		//wind mills
-		GameRegistry.registerTileEntity(TileCkgL.class, "TileEntityCkgL");
-		GameRegistry.registerTileEntity(TileCkgM.class, "TileEntityCkgM");
-		GameRegistry.registerTileEntity(TileCkgH.class, "TileEntityCkgH");
-		GameRegistry.registerTileEntity(TileCkgE.class, "TileEntityCkgE");
-	}
 
-	
+    public static void init() {
+        // wind mills
+        GameRegistry.registerTileEntity(TileCkwmL.class, "TileEntityCkwmL");
+        GameRegistry.registerTileEntity(TileCkwmM.class, "TileEntityCkwmM");
+        GameRegistry.registerTileEntity(TileCkwmH.class, "TileEntityCkwmH");
+        GameRegistry.registerTileEntity(TileCkwmE.class, "TileEntityCkwmE");
+        // water mills
+        GameRegistry.registerTileEntity(TileCkwaL.class, "TileEntityCkwaL");
+        GameRegistry.registerTileEntity(TileCkwaM.class, "TileEntityCkwaM");
+        GameRegistry.registerTileEntity(TileCkwaH.class, "TileEntityCkwaH");
+        GameRegistry.registerTileEntity(TileCkwaE.class, "TileEntityCkwaE");
+        // wind mills
+        GameRegistry.registerTileEntity(TileCkgL.class, "TileEntityCkgL");
+        GameRegistry.registerTileEntity(TileCkgM.class, "TileEntityCkgM");
+        GameRegistry.registerTileEntity(TileCkgH.class, "TileEntityCkgH");
+        GameRegistry.registerTileEntity(TileCkgE.class, "TileEntityCkgE");
+    }
+
 }
-

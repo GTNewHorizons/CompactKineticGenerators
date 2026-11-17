@@ -2,10 +2,8 @@ package com.lulan.compactkineticgenerators.tileentity;
 
 public class TileCkgM extends BasicTileCkg {
 
-	public TileCkgM()
-	{
-		super(1);
-	}
-	
-	
+    public TileCkgM() {
+        super(1);
+    }
+
 }
