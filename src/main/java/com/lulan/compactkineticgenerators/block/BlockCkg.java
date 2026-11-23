@@ -2,7 +2,6 @@ package com.lulan.compactkineticgenerators.block;
 
 import java.util.List;
 
-import com.lulan.compactkineticgenerators.CompactKineticGenerators;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -20,6 +19,7 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
+import com.lulan.compactkineticgenerators.CompactKineticGenerators;
 import com.lulan.compactkineticgenerators.reference.Reference;
 import com.lulan.compactkineticgenerators.tileentity.BasicTileCkg;
 import com.lulan.compactkineticgenerators.tileentity.TileCkgE;

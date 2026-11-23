@@ -10,7 +10,6 @@ public class CommonProxy implements IProxy {
     public static SimpleNetworkWrapper channelS;
 
     @Override
-    public void registerChannel() {
-    }
+    public void registerChannel() {}
 
 }

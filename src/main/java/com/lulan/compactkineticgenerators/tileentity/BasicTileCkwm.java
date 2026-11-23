@@ -1,8 +1,8 @@
 package com.lulan.compactkineticgenerators.tileentity;
 
-import com.lulan.compactkineticgenerators.CompactKineticGenerators;
 import net.minecraft.nbt.NBTTagCompound;
 
+import com.lulan.compactkineticgenerators.CompactKineticGenerators;
 import com.lulan.compactkineticgenerators.handler.ConfigHandler;
 
 import ic2.core.block.kineticgenerator.tileentity.TileEntityWindKineticGenerator;
