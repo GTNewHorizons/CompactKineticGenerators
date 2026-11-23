@@ -20,7 +20,7 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
     modid = Reference.MOD_ID,
     name = Reference.MOD_NAME,
     version = Reference.MOD_VERSION,
-    dependencies = "required-after:Forge@[10.13,);required-after:IC2@[2.2,)")
+    dependencies = "required-after:Forge@[10.13,);required-after:IC2@[2.2,);required-after:gtnhlib@[0.12.10,)")
 public class CompactKineticGenerators {
 
     @Mod.Instance(Reference.MOD_ID)
@@ -35,7 +35,7 @@ public class CompactKineticGenerators {
 
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event) {
-        ConfigHandler.init(event.getSuggestedConfigurationFile());
+        ConfigHandler.init();
         ModItems.init();
         ModBlocks.init();
     }

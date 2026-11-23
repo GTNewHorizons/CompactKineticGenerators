@@ -21,8 +21,5 @@ item.compactkineticgenerators:IridiumBlade.name=Иридиевая лопаст�
 
 # tooltip
 tooltip.ckg.eu=Выход энергии: 0-%s EU/t макс.
-tooltip.ckg.ku=Выход энергии: 0-%s KU/t макс.
-tooltip.ckg.capacity0=Буфер: 1m EU
-tooltip.ckg.capacity1=Буфер: 4m EU
-tooltip.ckg.capacity2=Буфер: 10m EU
-tooltip.ckg.capacity3=Буфер: 40m EU
+tooltip.ckg.outputScale=Множитель выработки: ×%s
+tooltip.ckg.capacity=Буфер: %s

@@ -23,7 +23,7 @@ abstract public class WindKineticGeneratorTileEntity extends TileEntityWindKinet
         this.tick = 0;
 
         try {
-            this.scaleOutput = (float) ConfigHandler.scaleOutput[this.ckwmType];
+            this.scaleOutput = (float) ConfigHandler.getOutputScale(false, this.ckwmType);
             this.scaleDamage = (float) ConfigHandler.scaleDamage[this.ckwmType];
         } catch (Exception e) {
             CompactKineticGenerators.LOGGER.error("Failed to load wind mill scales for tier " + type, e);

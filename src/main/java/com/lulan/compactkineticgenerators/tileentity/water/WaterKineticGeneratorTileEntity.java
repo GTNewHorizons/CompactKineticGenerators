@@ -23,7 +23,7 @@ public class WaterKineticGeneratorTileEntity extends TileEntityWaterKineticGener
         this.tick = 0;
 
         try {
-            this.scaleOutput = (float) ConfigHandler.scaleOutputWater[this.ckwaType];
+            this.scaleOutput = (float) ConfigHandler.getOutputScale(true, this.ckwaType);
             this.scaleDamage = (float) ConfigHandler.scaleDamageWater[this.ckwaType];
         } catch (Exception e) {
             CompactKineticGenerators.LOGGER.error("Failed to load water mill scales for tier " + type, e);

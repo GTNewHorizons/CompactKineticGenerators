@@ -8,7 +8,11 @@ import net.minecraft.item.ItemBlockWithMetadata;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.StatCollector;
 
+import com.gtnewhorizon.gtnhlib.util.numberformatting.NumberFormatUtil;
 import com.lulan.compactkineticgenerators.handler.ConfigHandler;
+import com.lulan.compactkineticgenerators.tileentity.converter.KineticGeneratorTileEntity;
+
+import ic2.api.energy.EnergyNet;
 
 public class KineticGeneratorBlockItem extends ItemBlockWithMetadata {
 
@@ -32,16 +36,21 @@ public class KineticGeneratorBlockItem extends ItemBlockWithMetadata {
         }
 
         int meta = itemstack.getItemDamage();
+        if (meta < 0 || meta > 11) {
+            return;
+        }
         if (meta <= 7) {
-            double scale = meta <= 3 ? ConfigHandler.scaleOutput[meta] : ConfigHandler.scaleOutputWater[meta - 4];
-            list.add(StatCollector.translateToLocalFormatted("tooltip.ckg.ku", scale));
+            double scale = ConfigHandler.getOutputScale(meta >= 4, meta % 4);
+            String multiplier = NumberFormatUtil.formatNumber(scale);
+            list.add(StatCollector.translateToLocalFormatted("tooltip.ckg.outputScale", multiplier));
             return;
         }
 
-        int tier = meta <= 10 ? meta - 8 : ConfigHandler.customKGTier - 4;
-        int eu = 2048 << (tier * 2);
-        list.add(StatCollector.translateToLocalFormatted("tooltip.ckg.eu", eu));
-        list.add(StatCollector.translateToLocalFormatted("tooltip.ckg.capacity" + (meta - 8)));
+        int type = meta - 8;
+        double eu = EnergyNet.instance.getPowerFromTier(KineticGeneratorTileEntity.getSourceTier(type));
+        list.add(StatCollector.translateToLocalFormatted("tooltip.ckg.eu", NumberFormatUtil.formatNumber(eu)));
+        String capacity = NumberFormatUtil.formatEnergyCompact(KineticGeneratorTileEntity.getStorageCapacity(type));
+        list.add(StatCollector.translateToLocalFormatted("tooltip.ckg.capacity", capacity));
     }
 
 }
