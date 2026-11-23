@@ -158,23 +158,15 @@ public class BlockCkg extends BasicCkgContainer {
     @Override
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float hitX,
         float hitY, float hitZ) {
-        // client side
         if (world.isRemote) {
             return true;
         }
-        // server side
-        else if (!player.isSneaking()) {
-            TileEntity tile = world.getTileEntity(x, y, z);
-
-            if (tile instanceof IHasGui) {
-                if (!world.isRemote) {
-                    return IC2.platform.launchGui(player, (IHasGui) tile);
-                }
-                return true;
-            }
+        if (player.isSneaking()) {
+            return false;
         }
 
-        return false;
+        TileEntity tile = world.getTileEntity(x, y, z);
+        return tile instanceof IHasGui gui && IC2.platform.launchGui(player, gui);
     }
 
     @Override
