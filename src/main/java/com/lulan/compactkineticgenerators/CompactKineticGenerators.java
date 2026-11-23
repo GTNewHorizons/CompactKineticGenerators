@@ -59,22 +59,12 @@ public class CompactKineticGenerators {
 
         ModTileentity.init();
 
-        LOGGER.info("DEBUG : Init complete."); // debug
-
-        // Waila tooltip provider (NYI)
-        // FMLInterModComms.sendMessage("Waila", "register",
-        // "com.lulan.shincolle.waila.WailaDataProvider.callbackRegister");
+        LOGGER.info("DEBUG : Init complete.");
     }
 
     /** post initial: mod interact */
     @Mod.EventHandler
     public void postInit(FMLPostInitializationEvent event) {
-        // LogHelper.info("DEBUG : biome spawn: "+this.worldObj.getBiomeGenForCoords((int)this.posX,
-        // (int)this.posZ).getSpawnableList(EnumCreatureType.waterCreature).get(1));
-        // for(String oreName : OreDictionary.getOreNames()) { //list all oreDictionary (DEBUG)
-        // LogHelper.info(oreName);
-        // }
-
         LOGGER.info("DEBUG : postInit complete."); // debug
     }
 

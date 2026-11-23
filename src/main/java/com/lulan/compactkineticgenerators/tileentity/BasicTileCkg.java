@@ -92,24 +92,6 @@ public class BasicTileCkg extends TileEntityKineticGenerator {
                 this.EUstorage += this.production;
                 return true;
             }
-
-            // Leave this code disabled; its purpose is unclear.
-            // if (freeEU > 0D && freeEU <= gainEU)
-            // {
-            // freeEU = gainEU;
-            // }
-            //
-            // if (freeEU >= gainEU)
-            // {
-            // this.receivedkinetic = ((IKineticSource)te).requestkineticenergy(dir.getOpposite(), kineticbandwith);
-            //
-            // if (this.receivedkinetic != 0)
-            // {
-            // this.production = this.receivedkinetic * this.productionpeerkineticunit;
-            // this.EUstorage += this.production;
-            // return true;
-            // }
-            // }
         }
 
         this.production = 0D;

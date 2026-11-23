@@ -11,15 +11,6 @@ public class CommonProxy implements IProxy {
 
     @Override
     public void registerChannel() {
-        // //SimpleNetworkWrapper packets
-        // channelS = NetworkRegistry.INSTANCE.newSimpleChannel(channelNameS);
-        //
-        // //register packets
-        // channelE.registerMessage(S2CEntitySync.Handler.class, S2CEntitySync.class, ID.Packets.S2C_EntitySync,
-        // Side.CLIENT);
-        // channelG.registerMessage(C2SGUIPackets.Handler.class, C2SGUIPackets.class, ID.Packets.C2S_GUIInput,
-        // Side.SERVER);
-        //
     }
 
 }
