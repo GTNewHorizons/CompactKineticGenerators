@@ -27,7 +27,7 @@ public class ItemBlockCkg extends ItemBlockWithMetadata {
 
     // display egg information
     @Override
-    public void addInformation(ItemStack itemstack, EntityPlayer player, List list, boolean par4) {
+    public void addInformation(ItemStack itemstack, EntityPlayer player, List<String> list, boolean par4) {
         if (itemstack != null) {
             int meta = itemstack.getItemDamage();
 

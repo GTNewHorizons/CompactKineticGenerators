@@ -318,7 +318,7 @@ public class BlockCkg extends BasicCkgContainer {
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void getSubBlocks(Item item, CreativeTabs ctab, List list) {
+    public void getSubBlocks(Item item, CreativeTabs ctab, List<ItemStack> list) {
         // wind mills
         list.add(new ItemStack(item, 1, 0));
         list.add(new ItemStack(item, 1, 1));
