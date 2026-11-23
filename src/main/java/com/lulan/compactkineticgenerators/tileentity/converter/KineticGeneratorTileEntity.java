@@ -1,4 +1,4 @@
-package com.lulan.compactkineticgenerators.tileentity;
+package com.lulan.compactkineticgenerators.tileentity.converter;
 
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
@@ -13,20 +13,19 @@ import ic2.core.block.generator.tileentity.TileEntityKineticGenerator;
 import ic2.core.init.MainConfig;
 import ic2.core.util.ConfigUtil;
 
-public class BasicTileCkg extends TileEntityKineticGenerator {
+public class KineticGeneratorTileEntity extends TileEntityKineticGenerator {
 
     public int type;
     protected double guiproduction = 0.0D;
     protected double production = 0.0D;
-    protected int receivedkinetic = 0;
     protected final int MaxStorage;
     protected final double productionpeerkineticunit;
 
-    public BasicTileCkg() {
+    public KineticGeneratorTileEntity() {
         this(0);
     }
 
-    public BasicTileCkg(int type) {
+    public KineticGeneratorTileEntity(int type) {
         super();
         this.type = type;
 
@@ -34,22 +33,12 @@ public class BasicTileCkg extends TileEntityKineticGenerator {
             * ConfigUtil.getFloat(MainConfig.get(), "balance/energy/generator/Kinetic"));
         this.updateTicker = IC2.random.nextInt(getTickRate());
 
-        // EU storage
-        switch (this.type) {
-            case 1:
-                this.MaxStorage = 4000000;
-                break;
-            case 2:
-                this.MaxStorage = 10000000;
-                break;
-            case 3:
-                this.MaxStorage = 40000000;
-                break;
-            default:
-                this.MaxStorage = 1000000;
-                break;
-        }
-
+        this.MaxStorage = switch (this.type) {
+            case 1 -> 4_000_000;
+            case 2 -> 10_000_000;
+            case 3 -> 40_000_000;
+            default -> 1_000_000;
+        };
     }
 
     @Override
@@ -77,43 +66,19 @@ public class BasicTileCkg extends TileEntityKineticGenerator {
         TileEntity te = this.worldObj
             .getTileEntity(this.xCoord + dir.offsetX, this.yCoord + dir.offsetY, this.zCoord + dir.offsetZ);
 
-        if ((te instanceof IKineticSource)) {
-            // 取得最大可獲得KU
-            int kineticbandwith = ((IKineticSource) te).maxrequestkineticenergyTick(dir.getOpposite());
+        if (te instanceof IKineticSource source) {
+            ForgeDirection from = dir.getOpposite();
+            int bandwidth = source.maxrequestkineticenergyTick(from);
+            int received = source.requestkineticenergy(from, bandwidth);
 
-            double freeEU = this.MaxStorage - this.EUstorage;
-            double gainEU = this.productionpeerkineticunit * kineticbandwith;
-
-            // 直接將剩餘KU全部領走
-            this.receivedkinetic = ((IKineticSource) te).requestkineticenergy(dir.getOpposite(), kineticbandwith);
-
-            if (this.receivedkinetic >= 0) {
-                this.production = this.receivedkinetic * this.productionpeerkineticunit;
+            if (received >= 0) {
+                this.production = received * this.productionpeerkineticunit;
                 this.EUstorage += this.production;
                 return true;
             }
-
-            // 意義不明, 此段忽略
-            // if (freeEU > 0D && freeEU <= gainEU)
-            // {
-            // freeEU = gainEU;
-            // }
-            //
-            // if (freeEU >= gainEU)
-            // {
-            // this.receivedkinetic = ((IKineticSource)te).requestkineticenergy(dir.getOpposite(), kineticbandwith);
-            //
-            // if (this.receivedkinetic != 0)
-            // {
-            // this.production = this.receivedkinetic * this.productionpeerkineticunit;
-            // this.EUstorage += this.production;
-            // return true;
-            // }
-            // }
         }
 
         this.production = 0D;
-        this.receivedkinetic = 0;
         return false;
     }
 
@@ -132,12 +97,7 @@ public class BasicTileCkg extends TileEntityKineticGenerator {
     // 4 = 2048, 5 = 8192, 6 = 32768, 7 = 131072
     @Override
     public int getSourceTier() {
-        // custom type
-        if (this.type >= 3) {
-            return ConfigHandler.customKGTier;
-        } else {
-            return 4 + this.type;
-        }
+        return this.type >= 3 ? ConfigHandler.customKGTier : 4 + this.type;
     }
 
     @Override

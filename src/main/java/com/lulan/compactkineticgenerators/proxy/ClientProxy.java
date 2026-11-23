@@ -1,29 +1,23 @@
 package com.lulan.compactkineticgenerators.proxy;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.settings.GameSettings;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.world.World;
+import net.minecraft.client.gui.GuiScreen;
 
-public class ClientProxy extends CommonProxy {
+import ic2.api.item.IKineticRotor.GearboxType;
+import ic2.core.block.kineticgenerator.gui.GuiWaterKineticGenerator;
+import ic2.core.block.kineticgenerator.gui.GuiWindKineticGenerator;
 
-    public static World getClientWorld() {
-        return Minecraft.getMinecraft().theWorld;
+public final class ClientProxy extends CommonProxy {
+
+    @Override
+    public GearboxType getRotorTooltipGearboxType() {
+        GuiScreen screen = Minecraft.getMinecraft().currentScreen;
+        if (screen instanceof GuiWaterKineticGenerator) {
+            return GearboxType.WATER;
+        }
+        if (screen instanceof GuiWindKineticGenerator) {
+            return GearboxType.WIND;
+        }
+        return null;
     }
-
-    // client player
-    public static EntityPlayer getClientPlayer() {
-        return Minecraft.getMinecraft().thePlayer;
-    }
-
-    // client minecraft
-    public static GameSettings getGameSetting() {
-        return Minecraft.getMinecraft().gameSettings;
-    }
-
-    // client minecraft
-    public static Minecraft getMineraft() {
-        return Minecraft.getMinecraft();
-    }
-
 }

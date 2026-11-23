@@ -1,32 +1,32 @@
-package com.lulan.compactkineticgenerators.tileentity;
+package com.lulan.compactkineticgenerators.tileentity.wind;
 
 import net.minecraft.nbt.NBTTagCompound;
 
+import com.lulan.compactkineticgenerators.CompactKineticGenerators;
 import com.lulan.compactkineticgenerators.handler.ConfigHandler;
 
 import ic2.core.block.kineticgenerator.tileentity.TileEntityWindKineticGenerator;
 
-abstract public class BasicTileCkwm extends TileEntityWindKineticGenerator {
+abstract public class WindKineticGeneratorTileEntity extends TileEntityWindKineticGenerator {
 
     public int ckwmType, tick;
     protected float scaleOutput;
     protected float scaleDamage;
 
-    public BasicTileCkwm() {
+    public WindKineticGeneratorTileEntity() {
         this(0);
     }
 
-    public BasicTileCkwm(int type) {
+    public WindKineticGeneratorTileEntity(int type) {
         super();
         this.ckwmType = type;
         this.tick = 0;
 
-        // setup scale
         try {
             this.scaleOutput = (float) ConfigHandler.scaleOutput[this.ckwmType];
             this.scaleDamage = (float) ConfigHandler.scaleDamage[this.ckwmType];
         } catch (Exception e) {
-            e.printStackTrace();
+            CompactKineticGenerators.LOGGER.error("Failed to load wind mill scales for tier " + type, e);
             this.scaleOutput = 1F;
             this.scaleDamage = 1F;
         }
@@ -37,19 +37,14 @@ abstract public class BasicTileCkwm extends TileEntityWindKineticGenerator {
     protected void updateEntityServer() {
         super.updateEntityServer();
 
-        // rotor take more damage
-        if (this.tick++ % getTickRate() == 0) {
-            if (getKuOutput() > 0 && !this.rotorSlot.isEmpty()) {
-                double wind = calcWindStrength();
+        if (this.tick++ % getTickRate() != 0 || getKuOutput() <= 0 || this.rotorSlot.isEmpty()) {
+            return;
+        }
 
-                if (wind >= getMinWindStrength()) {
-                    if (wind <= getMaxWindStrength()) {
-                        this.rotorSlot.damage((int) (1 * this.scaleDamage), false);
-                    } else {
-                        this.rotorSlot.damage((int) (4 * this.scaleDamage), false);
-                    }
-                }
-            }
+        double wind = calcWindStrength();
+        if (wind >= getMinWindStrength()) {
+            int multiplier = wind <= getMaxWindStrength() ? 1 : 4;
+            this.rotorSlot.damage((int) (multiplier * this.scaleDamage), false);
         }
     }
 
@@ -58,17 +53,15 @@ abstract public class BasicTileCkwm extends TileEntityWindKineticGenerator {
         return (int) (scaleOutput * super.getKuOutput());
     }
 
-    // 讀取nbt資料
     @Override
     public void readFromNBT(NBTTagCompound nbt) {
-        super.readFromNBT(nbt); // 從nbt讀取方塊的xyz座標
+        super.readFromNBT(nbt);
 
         ckwmType = nbt.getInteger("type");
         scaleOutput = nbt.getFloat("scale");
         scaleDamage = nbt.getFloat("damage");
     }
 
-    // 將資料寫進nbt
     @Override
     public void writeToNBT(NBTTagCompound nbt) {
         super.writeToNBT(nbt);
