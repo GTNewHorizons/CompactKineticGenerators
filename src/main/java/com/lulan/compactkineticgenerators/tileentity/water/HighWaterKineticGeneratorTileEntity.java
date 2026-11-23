@@ -1,4 +1,4 @@
-package com.lulan.compactkineticgenerators.tileentity;
+package com.lulan.compactkineticgenerators.tileentity.water;
 
 public class HighWaterKineticGeneratorTileEntity extends WaterKineticGeneratorTileEntity {
 

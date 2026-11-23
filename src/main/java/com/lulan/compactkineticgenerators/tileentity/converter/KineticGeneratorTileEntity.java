@@ -1,4 +1,4 @@
-package com.lulan.compactkineticgenerators.tileentity;
+package com.lulan.compactkineticgenerators.tileentity.converter;
 
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;

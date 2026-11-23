@@ -1,4 +1,4 @@
-package com.lulan.compactkineticgenerators.tileentity;
+package com.lulan.compactkineticgenerators.tileentity.converter;
 
 public class LowKineticGeneratorTileEntity extends KineticGeneratorTileEntity {
 
