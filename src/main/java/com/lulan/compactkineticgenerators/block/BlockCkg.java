@@ -2,6 +2,7 @@ package com.lulan.compactkineticgenerators.block;
 
 import java.util.List;
 
+import com.lulan.compactkineticgenerators.CompactKineticGenerators;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -182,7 +183,7 @@ public class BlockCkg extends BasicCkgContainer {
                 }
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            CompactKineticGenerators.LOGGER.error(e);
             return null;
         }
     }

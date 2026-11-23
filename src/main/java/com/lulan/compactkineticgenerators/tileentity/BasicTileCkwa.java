@@ -1,5 +1,6 @@
 package com.lulan.compactkineticgenerators.tileentity;
 
+import com.lulan.compactkineticgenerators.CompactKineticGenerators;
 import net.minecraft.nbt.NBTTagCompound;
 
 import com.lulan.compactkineticgenerators.handler.ConfigHandler;
@@ -26,7 +27,7 @@ public class BasicTileCkwa extends TileEntityWaterKineticGenerator {
             this.scaleOutput = (float) ConfigHandler.scaleOutputWater[this.ckwaType];
             this.scaleDamage = (float) ConfigHandler.scaleDamageWater[this.ckwaType];
         } catch (Exception e) {
-            e.printStackTrace();
+            CompactKineticGenerators.LOGGER.error(e);
             this.scaleOutput = 1F;
             this.scaleDamage = 1F;
         }

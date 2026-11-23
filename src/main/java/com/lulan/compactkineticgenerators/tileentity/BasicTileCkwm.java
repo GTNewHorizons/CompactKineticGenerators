@@ -1,5 +1,6 @@
 package com.lulan.compactkineticgenerators.tileentity;
 
+import com.lulan.compactkineticgenerators.CompactKineticGenerators;
 import net.minecraft.nbt.NBTTagCompound;
 
 import com.lulan.compactkineticgenerators.handler.ConfigHandler;
@@ -26,7 +27,7 @@ abstract public class BasicTileCkwm extends TileEntityWindKineticGenerator {
             this.scaleOutput = (float) ConfigHandler.scaleOutput[this.ckwmType];
             this.scaleDamage = (float) ConfigHandler.scaleDamage[this.ckwmType];
         } catch (Exception e) {
-            e.printStackTrace();
+            CompactKineticGenerators.LOGGER.error(e);
             this.scaleOutput = 1F;
             this.scaleDamage = 1F;
         }

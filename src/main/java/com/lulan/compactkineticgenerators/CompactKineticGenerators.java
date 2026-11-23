@@ -7,13 +7,14 @@ import com.lulan.compactkineticgenerators.init.ModRecipes;
 import com.lulan.compactkineticgenerators.init.ModTileentity;
 import com.lulan.compactkineticgenerators.proxy.IProxy;
 import com.lulan.compactkineticgenerators.reference.Reference;
-import com.lulan.compactkineticgenerators.utility.LogHelper;
 
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 @Mod(
     modid = Reference.MOD_ID,
@@ -25,6 +26,8 @@ public class CompactKineticGenerators {
     // mod instance
     @Mod.Instance(Reference.MOD_ID)
     public static CompactKineticGenerators instance;
+
+    public static final Logger LOGGER = LogManager.getLogger(Reference.MOD_NAME);
 
     // proxy for client/server event
     @SidedProxy(clientSide = Reference.CLIENT_PROXY, serverSide = Reference.SERVER_PROXY)
@@ -43,7 +46,7 @@ public class CompactKineticGenerators {
         // Packet channel register (simple network)
         proxy.registerChannel();
 
-        LogHelper.info("DEBUG : preInit complete."); // debug
+        LOGGER.info("DEBUG : preInit complete."); // debug
     }
 
     /**
@@ -56,7 +59,7 @@ public class CompactKineticGenerators {
 
         ModTileentity.init();
 
-        LogHelper.info("DEBUG : Init complete."); // debug
+        LOGGER.info("DEBUG : Init complete."); // debug
 
         // Waila tooltip provider (NYI)
         // FMLInterModComms.sendMessage("Waila", "register",
@@ -72,7 +75,7 @@ public class CompactKineticGenerators {
         // LogHelper.info(oreName);
         // }
 
-        LogHelper.info("DEBUG : postInit complete."); // debug
+        LOGGER.info("DEBUG : postInit complete."); // debug
     }
 
 }
