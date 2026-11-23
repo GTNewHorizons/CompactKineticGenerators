@@ -38,20 +38,14 @@ public class BasicTileCkwa extends TileEntityWaterKineticGenerator {
     protected void updateEntityServer() {
         super.updateEntityServer();
 
-        // rotor take more damage
-        if (this.tick++ > 20) {
-            this.tick = 0;
+        if (this.tick++ <= 20) {
+            return;
+        }
+        this.tick = 0;
 
-            if (getKuOutput() > 0 && !this.rotorSlot.isEmpty()) {
-                // ocean biome
-                if (this.type == 1) {
-                    this.rotorSlot.damage((int) (2 * this.scaleDamage), false);
-                }
-                // other
-                else {
-                    this.rotorSlot.damage((int) (1 * this.scaleDamage), false);
-                }
-            }
+        if (getKuOutput() > 0 && !this.rotorSlot.isEmpty()) {
+            int multiplier = this.type == 1 ? 2 : 1; // Ocean biomes double wear.
+            this.rotorSlot.damage((int) (multiplier * this.scaleDamage), false);
         }
     }
 

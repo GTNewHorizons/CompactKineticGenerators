@@ -38,19 +38,14 @@ abstract public class BasicTileCkwm extends TileEntityWindKineticGenerator {
     protected void updateEntityServer() {
         super.updateEntityServer();
 
-        // rotor take more damage
-        if (this.tick++ % getTickRate() == 0) {
-            if (getKuOutput() > 0 && !this.rotorSlot.isEmpty()) {
-                double wind = calcWindStrength();
+        if (this.tick++ % getTickRate() != 0 || getKuOutput() <= 0 || this.rotorSlot.isEmpty()) {
+            return;
+        }
 
-                if (wind >= getMinWindStrength()) {
-                    if (wind <= getMaxWindStrength()) {
-                        this.rotorSlot.damage((int) (1 * this.scaleDamage), false);
-                    } else {
-                        this.rotorSlot.damage((int) (4 * this.scaleDamage), false);
-                    }
-                }
-            }
+        double wind = calcWindStrength();
+        if (wind >= getMinWindStrength()) {
+            int multiplier = wind <= getMaxWindStrength() ? 1 : 4;
+            this.rotorSlot.damage((int) (multiplier * this.scaleDamage), false);
         }
     }
 
