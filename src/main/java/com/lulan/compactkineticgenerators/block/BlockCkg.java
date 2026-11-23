@@ -97,97 +97,34 @@ public class BlockCkg extends BasicCkgContainer {
     @SideOnly(Side.CLIENT)
     public IIcon getIcon(int side, int meta) {
         try {
-            // wind mills
-            if (meta <= 3) {
-                return switch (side) {
-                    case 0 -> // default top
-                        icons[12];
-                    case 1 -> // default btm
-                        icons[13];
-                    case 2 -> // default tail
-                        icons[meta * 3 + 1];
-                    case 3 -> // default head
-                        icons[meta * 3];
-                    case 4, 5 -> // default side
-                        icons[meta * 3 + 2];
-                    case 6 -> // head
-                        icons[meta * 3];
-                    case 7 -> // tail
-                        icons[meta * 3 + 1];
-                    case 8 -> // side
-                        icons[meta * 3 + 2];
-                    case 9 -> // top
-                        icons[12];
-                    default -> // btm
-                        icons[13];
-                };
-            }
-            // water mills
-            else if (meta <= 7) {
-                meta -= 4;
+            boolean waterMill = meta >= 4 && meta <= 7;
+            boolean generator = meta >= 8;
+            int tier = meta - (generator ? 8 : waterMill ? 4 : 0);
+            int windIcon = tier * 3;
 
-                return switch (side) {
-                    case 0 -> // default top
-                        icons[12];
-                    case 1 -> // default btm
-                        icons[13];
-                    case 2 -> // default tail
-                        icons[meta * 3 + 1];
-                    case 3 -> // default head
-                        icons[meta * 3];
-                    case 4, 5 -> // default side
-                        icons[meta * 3 + 2];
-                    case 6 -> // head
-                        icons[meta + 14];
-                    case 7 -> // tail
-                        icons[meta * 3 + 1];
-                    case 8 -> // side
-                        icons[meta * 3 + 2];
-                    case 9 -> // top
-                        icons[12];
-                    default -> // btm
-                        icons[13];
-                };
-            }
-            // kinetic generators
-            else {
-                meta -= 8;
-
-                return switch (side) {
-                    case 0 -> // default top
-                        icons[12];
-                    case 1 -> // default btm
-                        icons[13];
-                    case 2 -> // default tail
-                        icons[meta * 3 + 1];
-                    case 3 -> // default head
-                        icons[meta * 3];
-                    case 4, 5 -> // default side
-                        icons[meta * 3 + 2];
-                    case 6 -> // head
-                        icons[meta * 3];
-                    case 7 -> // tail
-                        icons[meta + 18];
-                    case 8 -> // side
-                        icons[meta * 3 + 2];
-                    case 9 -> // top
-                        icons[12];
-                    default -> // btm
-                        icons[13];
-                };
-            }
+            int icon = switch (side) {
+                case 0, 9 -> 12;
+                case 2 -> windIcon + 1;
+                case 3 -> windIcon;
+                case 4, 5, 8 -> windIcon + 2;
+                case 6 -> waterMill ? tier + 14 : windIcon;
+                case 7 -> generator ? tier + 18 : windIcon + 1;
+                default -> 13;
+            };
+            return icons[icon];
         } catch (Exception e) {
             CompactKineticGenerators.LOGGER.error(e);
             return null;
         }
     }
 
+    @Override
     @SideOnly(Side.CLIENT)
     public IIcon getIcon(IBlockAccess block, int x, int y, int z, int side) {
         TileEntity tile = block.getTileEntity(x, y, z);
 
-        if (tile instanceof IWrenchable) {
-            return this.getIcon(face2iconID[((IWrenchable) tile).getFacing()][side], block.getBlockMetadata(x, y, z));
+        if (tile instanceof IWrenchable wrenchable) {
+            return this.getIcon(face2iconID[wrenchable.getFacing()][side], block.getBlockMetadata(x, y, z));
         }
 
         return this.getIcon(face2iconID[2][side], 0);
