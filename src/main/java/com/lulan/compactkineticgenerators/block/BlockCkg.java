@@ -68,28 +68,28 @@ public class BlockCkg extends BasicCkgContainer {
     @Override
     @SideOnly(Side.CLIENT)
     public void registerBlockIcons(IIconRegister iconRegister) {
-        icons[0] = iconRegister.registerIcon(String.format(Reference.MOD_ID + ":BlockCkwmLH"));
-        icons[1] = iconRegister.registerIcon(String.format(Reference.MOD_ID + ":BlockCkwmLT"));
-        icons[2] = iconRegister.registerIcon(String.format(Reference.MOD_ID + ":BlockCkwmLS"));
-        icons[3] = iconRegister.registerIcon(String.format(Reference.MOD_ID + ":BlockCkwmMH"));
-        icons[4] = iconRegister.registerIcon(String.format(Reference.MOD_ID + ":BlockCkwmMT"));
-        icons[5] = iconRegister.registerIcon(String.format(Reference.MOD_ID + ":BlockCkwmMS"));
-        icons[6] = iconRegister.registerIcon(String.format(Reference.MOD_ID + ":BlockCkwmHH"));
-        icons[7] = iconRegister.registerIcon(String.format(Reference.MOD_ID + ":BlockCkwmHT"));
-        icons[8] = iconRegister.registerIcon(String.format(Reference.MOD_ID + ":BlockCkwmHS"));
-        icons[9] = iconRegister.registerIcon(String.format(Reference.MOD_ID + ":BlockCkwmEH"));
-        icons[10] = iconRegister.registerIcon(String.format(Reference.MOD_ID + ":BlockCkwmET"));
-        icons[11] = iconRegister.registerIcon(String.format(Reference.MOD_ID + ":BlockCkwmES"));
-        icons[12] = iconRegister.registerIcon(String.format(Reference.MOD_ID + ":BlockCkwmT"));
-        icons[13] = iconRegister.registerIcon(String.format(Reference.MOD_ID + ":BlockCkwmB"));
-        icons[14] = iconRegister.registerIcon(String.format(Reference.MOD_ID + ":BlockCkwaL"));
-        icons[15] = iconRegister.registerIcon(String.format(Reference.MOD_ID + ":BlockCkwaM"));
-        icons[16] = iconRegister.registerIcon(String.format(Reference.MOD_ID + ":BlockCkwaH"));
-        icons[17] = iconRegister.registerIcon(String.format(Reference.MOD_ID + ":BlockCkwaE"));
-        icons[18] = iconRegister.registerIcon(String.format(Reference.MOD_ID + ":BlockCkgL"));
-        icons[19] = iconRegister.registerIcon(String.format(Reference.MOD_ID + ":BlockCkgM"));
-        icons[20] = iconRegister.registerIcon(String.format(Reference.MOD_ID + ":BlockCkgH"));
-        icons[21] = iconRegister.registerIcon(String.format(Reference.MOD_ID + ":BlockCkgE"));
+        icons[0] = iconRegister.registerIcon(Reference.MOD_ID + ":BlockCkwmLH");
+        icons[1] = iconRegister.registerIcon(Reference.MOD_ID + ":BlockCkwmLT");
+        icons[2] = iconRegister.registerIcon(Reference.MOD_ID + ":BlockCkwmLS");
+        icons[3] = iconRegister.registerIcon(Reference.MOD_ID + ":BlockCkwmMH");
+        icons[4] = iconRegister.registerIcon(Reference.MOD_ID + ":BlockCkwmMT");
+        icons[5] = iconRegister.registerIcon(Reference.MOD_ID + ":BlockCkwmMS");
+        icons[6] = iconRegister.registerIcon(Reference.MOD_ID + ":BlockCkwmHH");
+        icons[7] = iconRegister.registerIcon(Reference.MOD_ID + ":BlockCkwmHT");
+        icons[8] = iconRegister.registerIcon(Reference.MOD_ID + ":BlockCkwmHS");
+        icons[9] = iconRegister.registerIcon(Reference.MOD_ID + ":BlockCkwmEH");
+        icons[10] = iconRegister.registerIcon(Reference.MOD_ID + ":BlockCkwmET");
+        icons[11] = iconRegister.registerIcon(Reference.MOD_ID + ":BlockCkwmES");
+        icons[12] = iconRegister.registerIcon(Reference.MOD_ID + ":BlockCkwmT");
+        icons[13] = iconRegister.registerIcon(Reference.MOD_ID + ":BlockCkwmB");
+        icons[14] = iconRegister.registerIcon(Reference.MOD_ID + ":BlockCkwaL");
+        icons[15] = iconRegister.registerIcon(Reference.MOD_ID + ":BlockCkwaM");
+        icons[16] = iconRegister.registerIcon(Reference.MOD_ID + ":BlockCkwaH");
+        icons[17] = iconRegister.registerIcon(Reference.MOD_ID + ":BlockCkwaE");
+        icons[18] = iconRegister.registerIcon(Reference.MOD_ID + ":BlockCkgL");
+        icons[19] = iconRegister.registerIcon(Reference.MOD_ID + ":BlockCkgM");
+        icons[20] = iconRegister.registerIcon(Reference.MOD_ID + ":BlockCkgH");
+        icons[21] = iconRegister.registerIcon(Reference.MOD_ID + ":BlockCkgE");
     }
 
     // side: 0:bottom, 1:top, 2:N, 3:S, 4:W, 5:E
