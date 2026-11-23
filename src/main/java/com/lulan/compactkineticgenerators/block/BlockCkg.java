@@ -108,9 +108,7 @@ public class BlockCkg extends BasicCkgContainer {
                         icons[meta * 3 + 1];
                     case 3 -> // default head
                         icons[meta * 3];
-                    case 4 -> // default side
-                        icons[meta * 3 + 2];
-                    case 5 -> // default side
+                    case 4, 5 -> // default side
                         icons[meta * 3 + 2];
                     case 6 -> // head
                         icons[meta * 3];
@@ -137,9 +135,7 @@ public class BlockCkg extends BasicCkgContainer {
                         icons[meta * 3 + 1];
                     case 3 -> // default head
                         icons[meta * 3];
-                    case 4 -> // default side
-                        icons[meta * 3 + 2];
-                    case 5 -> // default side
+                    case 4, 5 -> // default side
                         icons[meta * 3 + 2];
                     case 6 -> // head
                         icons[meta + 14];
@@ -166,9 +162,7 @@ public class BlockCkg extends BasicCkgContainer {
                         icons[meta * 3 + 1];
                     case 3 -> // default head
                         icons[meta * 3];
-                    case 4 -> // default side
-                        icons[meta * 3 + 2];
-                    case 5 -> // default side
+                    case 4, 5 -> // default side
                         icons[meta * 3 + 2];
                     case 6 -> // head
                         icons[meta * 3];
