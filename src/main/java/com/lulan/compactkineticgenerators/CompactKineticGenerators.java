@@ -8,11 +8,9 @@ import com.lulan.compactkineticgenerators.init.ModBlocks;
 import com.lulan.compactkineticgenerators.init.ModItems;
 import com.lulan.compactkineticgenerators.init.ModRecipes;
 import com.lulan.compactkineticgenerators.init.ModTileentity;
-import com.lulan.compactkineticgenerators.proxy.IProxy;
 import com.lulan.compactkineticgenerators.reference.Reference;
 
 import cpw.mods.fml.common.Mod;
-import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
@@ -30,10 +28,6 @@ public class CompactKineticGenerators {
 
     public static final Logger LOGGER = LogManager.getLogger(Reference.MOD_NAME);
 
-    // proxy for client/server event
-    @SidedProxy(clientSide = Reference.CLIENT_PROXY, serverSide = Reference.SERVER_PROXY)
-    public static IProxy proxy;
-
     /** pre initial: load config, block/item/entity/render init, event handler init */
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event) {
@@ -43,9 +37,6 @@ public class CompactKineticGenerators {
         ModItems.init();
 
         ModBlocks.init();
-
-        // Packet channel register (simple network)
-        proxy.registerChannel();
 
         LOGGER.info("DEBUG : preInit complete."); // debug
     }
