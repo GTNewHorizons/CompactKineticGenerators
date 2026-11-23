@@ -62,52 +62,9 @@ public class ConfigHandler {
     }
 
     // check get value
-    public static int[] getIntArraySpecialLength(int[] defaultValue, Property target, int type) {
-        int[] geti = target.getIntList();
-
-        switch (type) {
-            case 0:
-                if (geti != null && geti.length % 10 == 0) {
-                    return geti;
-                } else {
-                    target.set(defaultValue);
-                    return defaultValue;
-                }
-        }
-
-        return geti;
-    }
-
-    // check get value
-    public static int[] getIntArrayFromConfig(int[] defaultValue, Property target) {
-        int size = defaultValue.length;
-        int[] geti = target.getIntList();
-
-        if (geti != null && geti.length == size) {
-            return geti;
-        } else {
-            target.set(defaultValue);
-            return defaultValue;
-        }
-    }
-
-    // check get value
     public static double[] getDoubleArrayFromConfig(double[] defaultValue, Property target) {
         int size = defaultValue.length;
         double[] getd = target.getDoubleList();
-
-        if (getd != null && getd.length == size) {
-            return getd;
-        } else {
-            target.set(defaultValue);
-            return defaultValue;
-        }
-    }
-
-    // check get value
-    public static boolean[] getBooleanArrayFromConfig(boolean[] defaultValue, Property target) {
-        int size = defaultValue.length;
-        boolean[] getd = target.getBooleanList();
 
         if (getd != null && getd.length == size) {
             return getd;

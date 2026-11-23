@@ -16,12 +16,11 @@ import ic2.core.block.kineticgenerator.gui.GuiWindKineticGenerator;
 
 public class IridiumRotor extends BasicCkgItem implements IKineticRotor {
 
-    protected static final ResourceLocation tx = new ResourceLocation(Reference.TEXTURES_ITEMS + "IridiumRotorTx.png");;
+    protected static final ResourceLocation tx = new ResourceLocation(Reference.TEXTURES_ITEMS + "IridiumRotorTx.png");
     protected static int maxWindStrength;
     protected static int minWindStrength;
     protected static int radius;
     protected static float efficiency;
-    protected static boolean water;
 
     public IridiumRotor() {
         super();
@@ -31,7 +30,6 @@ public class IridiumRotor extends BasicCkgItem implements IKineticRotor {
         minWindStrength = 23;
         radius = 13;
         efficiency = 1F;
-        water = true;
     }
 
     @Override

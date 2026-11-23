@@ -81,9 +81,6 @@ public class BasicTileCkg extends TileEntityKineticGenerator {
             // Find the maximum KU available this tick.
             int kineticbandwith = ((IKineticSource) te).maxrequestkineticenergyTick(dir.getOpposite());
 
-            double freeEU = this.MaxStorage - this.EUstorage;
-            double gainEU = this.productionpeerkineticunit * kineticbandwith;
-
             // Request all available KU.
             this.receivedkinetic = ((IKineticSource) te).requestkineticenergy(dir.getOpposite(), kineticbandwith);
 

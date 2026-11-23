@@ -13,7 +13,6 @@ public class Reference {
     public static final String MOD_VERSION = Tags.VERSION;
     public static final String CLIENT_PROXY = "com.lulan.compactkineticgenerators.proxy.ClientProxy";
     public static final String SERVER_PROXY = "com.lulan.compactkineticgenerators.proxy.ServerProxy";
-    public static final String TEXTURES_BLOCKS = MOD_ID + ":textures/blocks/";
     public static final String TEXTURES_ITEMS = MOD_ID + ":textures/items/";
 
 }
