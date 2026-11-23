@@ -33,7 +33,11 @@ public class KineticGeneratorTileEntity extends TileEntityKineticGenerator {
             * ConfigUtil.getFloat(MainConfig.get(), "balance/energy/generator/Kinetic"));
         this.updateTicker = IC2.random.nextInt(getTickRate());
 
-        this.MaxStorage = switch (this.type) {
+        this.MaxStorage = getStorageCapacity(type);
+    }
+
+    public static int getStorageCapacity(int type) {
+        return switch (type) {
             case 1 -> 4_000_000;
             case 2 -> 10_000_000;
             case 3 -> 40_000_000;
@@ -97,7 +101,11 @@ public class KineticGeneratorTileEntity extends TileEntityKineticGenerator {
     // 4 = 2048, 5 = 8192, 6 = 32768, 7 = 131072
     @Override
     public int getSourceTier() {
-        return this.type >= 3 ? ConfigHandler.customKGTier : 4 + this.type;
+        return getSourceTier(this.type);
+    }
+
+    public static int getSourceTier(int type) {
+        return type >= 3 ? ConfigHandler.customKGTier : 4 + type;
     }
 
     @Override
