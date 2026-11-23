@@ -34,7 +34,7 @@ abstract public class BasicCkgContainer extends BlockContainer {
     // Translation key format: tile.<namespace>:<block_name>.name
     @Override
     public String getUnlocalizedName() {
-        return String.format("tile.ckg:%s", getUnwrappedUnlocalizedName(super.getUnlocalizedName()));
+        return "tile.ckg:" + getUnwrappedUnlocalizedName(super.getUnlocalizedName());
     }
 
     // Block icon registration.
@@ -43,8 +43,7 @@ abstract public class BasicCkgContainer extends BlockContainer {
     @Override
     @SideOnly(Side.CLIENT)
     public void registerBlockIcons(IIconRegister iconRegister) {
-        blockIcon = iconRegister
-            .registerIcon(String.format("%s", getUnwrappedUnlocalizedName(this.getUnlocalizedName())));
+        blockIcon = iconRegister.registerIcon(String.valueOf(getUnwrappedUnlocalizedName(this.getUnlocalizedName())));
     }
 
     @Override

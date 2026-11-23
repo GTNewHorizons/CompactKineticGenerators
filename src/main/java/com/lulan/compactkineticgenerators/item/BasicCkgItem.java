@@ -26,8 +26,7 @@ public class BasicCkgItem extends Item {
     // Translation key format: item.<namespace>:<item_name>.name
     @Override
     public String getUnlocalizedName() {
-        return String
-            .format("item.%s%s", Reference.MOD_ID + ":", getUnwrappedUnlocalizedName(super.getUnlocalizedName()));
+        return "item." + Reference.MOD_ID + ":" + getUnwrappedUnlocalizedName(super.getUnlocalizedName());
     }
 
     // ItemStack overload of getUnlocalizedName().
@@ -35,16 +34,8 @@ public class BasicCkgItem extends Item {
     @Override
     public String getUnlocalizedName(ItemStack itemstack) {
         int meta = itemstack.getItemDamage();
-
-        if (meta > 0) {
-            return String.format(
-                "item.%s%s",
-                Reference.MOD_ID + ":",
-                getUnwrappedUnlocalizedName(super.getUnlocalizedName()) + meta);
-        } else {
-            return String
-                .format("item.%s%s", Reference.MOD_ID + ":", getUnwrappedUnlocalizedName(super.getUnlocalizedName()));
-        }
+        String name = "item." + Reference.MOD_ID + ":" + getUnwrappedUnlocalizedName(super.getUnlocalizedName());
+        return meta > 0 ? name + meta : name;
     }
 
     // Item icon registration.
@@ -53,11 +44,8 @@ public class BasicCkgItem extends Item {
     @Override
     @SideOnly(Side.CLIENT)
     public void registerIcons(IIconRegister iconRegister) {
-        itemIcon = iconRegister.registerIcon(
-            this.getUnlocalizedName()
-                .substring(
-                    this.getUnlocalizedName()
-                        .indexOf(".") + 1));
+        String name = this.getUnlocalizedName();
+        itemIcon = iconRegister.registerIcon(name.substring(name.indexOf(".") + 1));
     }
 
 }
