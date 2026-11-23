@@ -238,38 +238,21 @@ public class BlockCkg extends BasicCkgContainer {
     @Override
     public void onBlockPlacedBy(World world, int x, int y, int z, EntityLivingBase entity, ItemStack itemStack) {
         TileEntity tile = world.getTileEntity(x, y, z);
-
-        if ((tile instanceof IWrenchable tile2) && itemStack != null) {
-
-            // set meta value
-            int meta = itemStack.getItemDamage();
-            if (meta > 11) meta = 0;
-
-            world.setBlockMetadataWithNotify(x, y, z, meta, 2);
-
-            // set facing
-            if (entity != null) {
-                int face = MathHelper.floor_double(entity.rotationYaw * 4.0F / 360.0F + 0.5D) & 0x3;
-
-                switch (face) {
-                    case 0:
-                        tile2.setFacing((short) 2); // N
-                        break;
-                    case 1:
-                        tile2.setFacing((short) 5); // E
-                        break;
-                    case 2:
-                        tile2.setFacing((short) 3); // S
-                        break;
-                    case 3:
-                        tile2.setFacing((short) 4); // W
-                        break;
-                }
-            } else {
-                // Default to north if no entity placed the block.
-                tile2.setFacing((short) 2);
-            }
+        if (!(tile instanceof IWrenchable wrenchable) || itemStack == null) {
+            return;
         }
+
+        int meta = itemStack.getItemDamage();
+        world.setBlockMetadataWithNotify(x, y, z, meta > 11 ? 0 : meta, 2);
+
+        int face = entity == null ? 0 : MathHelper.floor_double(entity.rotationYaw * 4.0F / 360.0F + 0.5D) & 0x3;
+        short facing = switch (face) {
+            case 1 -> 5; // E
+            case 2 -> 3; // S
+            case 3 -> 4; // W
+            default -> 2; // N
+        };
+        wrenchable.setFacing(facing);
     }
 
     @Override
