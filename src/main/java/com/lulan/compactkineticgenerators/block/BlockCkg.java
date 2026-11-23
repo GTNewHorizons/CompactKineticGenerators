@@ -179,50 +179,37 @@ public class BlockCkg extends BasicCkgContainer {
     public void breakBlock(World world, int x, int y, int z, Block block, int meta) {
         TileEntity tile = world.getTileEntity(x, y, z);
 
-        // Drop the contents of each inventory slot as item entities.
-        if (tile instanceof ISidedInventory tile2) {
-            // for all slots
-            for (int i = 0; i < tile2.getSizeInventory(); i++) {
-                ItemStack itemstack = tile2.getStackInSlot(i);
+        if (tile instanceof ISidedInventory inventory) {
+            for (int slot = 0; slot < inventory.getSizeInventory(); slot++) {
+                ItemStack stack = inventory.getStackInSlot(slot);
+                if (stack == null) {
+                    continue;
+                }
 
-                if (itemstack != null) {
-                    float f = world.rand.nextFloat() * 0.8F + 0.1F; // Random drop offset within the block.
-                    float f1 = world.rand.nextFloat() * 0.8F + 0.1F;
-                    float f2 = world.rand.nextFloat() * 0.8F + 0.1F;
-
-                    while (itemstack.stackSize > 0) {
-                        // Split large stacks into randomly sized drops.
-                        int j = world.rand.nextInt(32) + 32;
-                        if (j > itemstack.stackSize) {
-                            j = itemstack.stackSize;
-                        }
-                        itemstack.stackSize -= j;
-
-                        // Create an item entity for this drop.
-                        EntityItem item = new EntityItem(
-                            world,
-                            x + f,
-                            y + f1,
-                            z + f2,
-                            new ItemStack(itemstack.getItem(), j, itemstack.getItemDamage()));
-
-                        // Copy any NBT data to the dropped stack.
-                        if (itemstack.hasTagCompound()) {
-                            item.getEntityItem()
-                                .setTagCompound(
-                                    (NBTTagCompound) itemstack.getTagCompound()
-                                        .copy());
-                        }
-
-                        world.spawnEntityInWorld(item); // Spawn the item entity.
+                float offsetX = world.rand.nextFloat() * 0.8F + 0.1F;
+                float offsetY = world.rand.nextFloat() * 0.8F + 0.1F;
+                float offsetZ = world.rand.nextFloat() * 0.8F + 0.1F;
+                while (stack.stackSize > 0) {
+                    int size = Math.min(world.rand.nextInt(32) + 32, stack.stackSize);
+                    stack.stackSize -= size;
+                    EntityItem drop = new EntityItem(
+                        world,
+                        x + offsetX,
+                        y + offsetY,
+                        z + offsetZ,
+                        new ItemStack(stack.getItem(), size, stack.getItemDamage()));
+                    if (stack.hasTagCompound()) {
+                        drop.getEntityItem()
+                            .setTagCompound(
+                                (NBTTagCompound) stack.getTagCompound()
+                                    .copy());
                     }
+                    world.spawnEntityInWorld(drop);
                 }
             }
-
-            world.func_147453_f(x, y, z, block); // alert block changed
+            world.func_147453_f(x, y, z, block); // Notify neighbors of the inventory change.
         }
 
-        // Let the superclass remove the tile entity.
         super.breakBlock(world, x, y, z, block, meta);
     }
 
