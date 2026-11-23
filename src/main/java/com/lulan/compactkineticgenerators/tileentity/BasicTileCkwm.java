@@ -26,7 +26,7 @@ abstract public class BasicTileCkwm extends TileEntityWindKineticGenerator {
             this.scaleOutput = (float) ConfigHandler.scaleOutput[this.ckwmType];
             this.scaleDamage = (float) ConfigHandler.scaleDamage[this.ckwmType];
         } catch (Exception e) {
-            CompactKineticGenerators.LOGGER.error(e);
+            CompactKineticGenerators.LOGGER.error("Failed to load wind mill scales for tier " + type, e);
             this.scaleOutput = 1F;
             this.scaleDamage = 1F;
         }

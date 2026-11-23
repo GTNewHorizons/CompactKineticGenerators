@@ -113,7 +113,7 @@ public class BlockCkg extends BasicCkgContainer {
             };
             return icons[icon];
         } catch (Exception e) {
-            CompactKineticGenerators.LOGGER.error(e);
+            CompactKineticGenerators.LOGGER.error("Generator icon lookup failed: side " + side + ", meta " + meta, e);
             return null;
         }
     }
