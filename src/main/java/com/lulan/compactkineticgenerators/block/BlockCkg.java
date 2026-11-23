@@ -232,8 +232,8 @@ public class BlockCkg extends BasicCkgContainer {
     }
 
     /**
-     * 右鍵點到方塊時呼叫此方法
-     * 參數: world,方塊x,y,z,玩家,玩家面向,玩家點到的x,y,z
+     * Called when a player right-clicks the block.
+     * Arguments: world, block coordinates, player, clicked face, and hit position within the block.
      */
     @Override
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float hitX,
@@ -262,12 +262,12 @@ public class BlockCkg extends BasicCkgContainer {
         return meta;
     }
 
-    // 打掉方塊後, 掉落其內容物
+    // Drop the block's inventory when it breaks.
     @Override
     public void breakBlock(World world, int x, int y, int z, Block block, int meta) {
         TileEntity tile = world.getTileEntity(x, y, z);
 
-        // 抓到tile entity後, 掃描全部slot內容物, 然後做成entity掉落出來
+        // Drop the contents of each inventory slot as item entities.
         if (tile instanceof ISidedInventory) {
             ISidedInventory tile2 = (ISidedInventory) tile;
             // for all slots
@@ -275,19 +275,19 @@ public class BlockCkg extends BasicCkgContainer {
                 ItemStack itemstack = tile2.getStackInSlot(i);
 
                 if (itemstack != null) {
-                    float f = world.rand.nextFloat() * 0.8F + 0.1F; // 設定要隨機噴出的range
+                    float f = world.rand.nextFloat() * 0.8F + 0.1F; // Random drop offset within the block.
                     float f1 = world.rand.nextFloat() * 0.8F + 0.1F;
                     float f2 = world.rand.nextFloat() * 0.8F + 0.1F;
 
                     while (itemstack.stackSize > 0) {
-                        // 如果物品超過一個隨機數量, 會分更多疊噴出
+                        // Split large stacks into randomly sized drops.
                         int j = world.rand.nextInt(32) + 32;
                         if (j > itemstack.stackSize) {
                             j = itemstack.stackSize;
                         }
                         itemstack.stackSize -= j;
 
-                        // 將item做成entity, 生成到世界上
+                        // Create an item entity for this drop.
                         EntityItem item = new EntityItem(
                             world,
                             x + f,
@@ -295,7 +295,7 @@ public class BlockCkg extends BasicCkgContainer {
                             z + f2,
                             new ItemStack(itemstack.getItem(), j, itemstack.getItemDamage()));
 
-                        // 如果有NBT tag, 也要複製到物品上
+                        // Copy any NBT data to the dropped stack.
                         if (itemstack.hasTagCompound()) {
                             item.getEntityItem()
                                 .setTagCompound(
@@ -303,7 +303,7 @@ public class BlockCkg extends BasicCkgContainer {
                                         .copy());
                         }
 
-                        world.spawnEntityInWorld(item); // 生成entity
+                        world.spawnEntityInWorld(item); // Spawn the item entity.
                     }
                 }
             }
@@ -311,7 +311,7 @@ public class BlockCkg extends BasicCkgContainer {
             world.func_147453_f(x, y, z, block); // alert block changed
         }
 
-        // 呼叫原先的breakBlock, 會把tile entity移除掉
+        // Let the superclass remove the tile entity.
         super.breakBlock(world, x, y, z, block, meta);
     }
 
@@ -368,7 +368,7 @@ public class BlockCkg extends BasicCkgContainer {
                         break;
                 }
             } else {
-                // 若非entity放置方塊, 則預設朝向北
+                // Default to north if no entity placed the block.
                 tile2.setFacing((short) 2);
             }
         }

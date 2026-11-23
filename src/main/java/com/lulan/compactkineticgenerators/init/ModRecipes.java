@@ -9,12 +9,12 @@ import ic2.api.item.IC2Items;
 
 public class ModRecipes {
 
-    // 配方範例
-    // GameRegistry.addSmelting(取得物, 材料, 0.1f經驗);
-    // GameRegistry.addRecipe(new ShapedOreRecipe(取得物, " s ", "sss", " s ", 's', "stickWood" 材料陣列));
-    // GameRegistry.addRecipe(new ShapelessOreRecipe(取得物, 材料A, 材料B, ...));
+    // Recipe examples.
+    // GameRegistry.addSmelting(input, output, 0.1f);
+    // GameRegistry.addRecipe(new ShapedOreRecipe(output, " s ", "sss", " s ", 's', "stickWood"));
+    // GameRegistry.addRecipe(new ShapelessOreRecipe(output, ingredientA, ingredientB, ...));
     public static void init() {
-        // 配方材料or成品
+        // Recipe ingredients and outputs.
         ItemStack refironCasing = IC2Items.getItem("casingadviron");
         ItemStack refironShaft = IC2Items.getItem("steelshaft");
         ItemStack advAlloy = IC2Items.getItem("advancedAlloy");

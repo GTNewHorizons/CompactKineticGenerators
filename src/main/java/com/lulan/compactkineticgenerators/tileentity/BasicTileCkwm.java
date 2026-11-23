@@ -58,17 +58,17 @@ abstract public class BasicTileCkwm extends TileEntityWindKineticGenerator {
         return (int) (scaleOutput * super.getKuOutput());
     }
 
-    // 讀取nbt資料
+    // Read data from NBT.
     @Override
     public void readFromNBT(NBTTagCompound nbt) {
-        super.readFromNBT(nbt); // 從nbt讀取方塊的xyz座標
+        super.readFromNBT(nbt); // Read the block's coordinates from NBT.
 
         ckwmType = nbt.getInteger("type");
         scaleOutput = nbt.getFloat("scale");
         scaleDamage = nbt.getFloat("damage");
     }
 
-    // 將資料寫進nbt
+    // Write data to NBT.
     @Override
     public void writeToNBT(NBTTagCompound nbt) {
         super.writeToNBT(nbt);

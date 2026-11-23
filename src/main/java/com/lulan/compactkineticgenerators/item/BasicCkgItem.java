@@ -17,21 +17,21 @@ public class BasicCkgItem extends Item {
         this.setCreativeTab(CreativeTabCkg.CKG_TAB);
     }
 
-    // name設定用方法: 去掉.之前的字串 以便另外串上mod名稱形成的字串
+    // Strip Minecraft's prefix before adding the mod namespace.
     protected String getUnwrappedUnlocalizedName(String unlocalizedName) {
         return unlocalizedName.substring(unlocalizedName.indexOf(".") + 1);
     }
 
-    // 將name冠上mod名稱 用於之後給各語系檔案放上正確名稱
-    // 格式為item.MOD名稱:物品名稱.name
+    // Add the mod namespace for use in language files.
+    // Translation key format: item.<namespace>:<item_name>.name
     @Override
     public String getUnlocalizedName() {
         return String
             .format("item.%s%s", Reference.MOD_ID + ":", getUnwrappedUnlocalizedName(super.getUnlocalizedName()));
     }
 
-    // 同getUnlocalizedName() 此為加上itemstack版本
-    // 格式為item.MOD名稱:物品名稱.name
+    // ItemStack overload of getUnlocalizedName().
+    // Positive metadata is appended to the item name in the translation key.
     @Override
     public String getUnlocalizedName(ItemStack itemstack) {
         int meta = itemstack.getItemDamage();
@@ -47,9 +47,9 @@ public class BasicCkgItem extends Item {
         }
     }
 
-    // 物品圖示登錄
-    // 取出物品名稱(不含mod名稱)作為參數丟給icon register來登錄icon
-    // 注意icon只在client端才需要執行
+    // Item icon registration.
+    // Pass the item name without the item. prefix to the icon registry.
+    // Icons are only registered on the client.
     @Override
     @SideOnly(Side.CLIENT)
     public void registerIcons(IIconRegister iconRegister) {

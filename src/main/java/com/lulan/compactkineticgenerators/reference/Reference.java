@@ -7,7 +7,7 @@ import com.lulan.compactkineticgenerators.Tags;
  */
 public class Reference {
 
-    // 這邊主要放置各種常用參考, 主要為path, package
+    // Shared constants, mostly resource paths and class names.
     public static final String MOD_ID = "compactkineticgenerators";
     public static final String MOD_NAME = "Compact Kinetic Generators";
     public static final String MOD_VERSION = Tags.VERSION;

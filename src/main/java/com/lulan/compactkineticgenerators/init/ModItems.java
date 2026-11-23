@@ -7,14 +7,14 @@ import com.lulan.compactkineticgenerators.reference.Reference;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 
-@GameRegistry.ObjectHolder(Reference.MOD_ID) // 登錄object holder使mod的物件容易流通 其他人可以直接讀取該物件
+@GameRegistry.ObjectHolder(Reference.MOD_ID) // Expose the registered items for direct access by other mods.
 public class ModItems {
 
     // items
     public static final BasicCkgItem IridiumBlade = new IridiumBlade();
     public static final BasicCkgItem IridiumRotor = new IridiumRotor();
 
-    // 登錄item到遊戲中 (在pre init階段登錄)
+    // Register items during pre-initialization.
     public static void init() {
         // register items
         GameRegistry.registerItem(IridiumBlade, "IridiumBlade");

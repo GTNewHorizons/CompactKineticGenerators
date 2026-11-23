@@ -78,13 +78,13 @@ public class BasicTileCkg extends TileEntityKineticGenerator {
             .getTileEntity(this.xCoord + dir.offsetX, this.yCoord + dir.offsetY, this.zCoord + dir.offsetZ);
 
         if ((te instanceof IKineticSource)) {
-            // 取得最大可獲得KU
+            // Find the maximum KU available this tick.
             int kineticbandwith = ((IKineticSource) te).maxrequestkineticenergyTick(dir.getOpposite());
 
             double freeEU = this.MaxStorage - this.EUstorage;
             double gainEU = this.productionpeerkineticunit * kineticbandwith;
 
-            // 直接將剩餘KU全部領走
+            // Request all available KU.
             this.receivedkinetic = ((IKineticSource) te).requestkineticenergy(dir.getOpposite(), kineticbandwith);
 
             if (this.receivedkinetic >= 0) {
@@ -93,7 +93,7 @@ public class BasicTileCkg extends TileEntityKineticGenerator {
                 return true;
             }
 
-            // 意義不明, 此段忽略
+            // Leave this code disabled; its purpose is unclear.
             // if (freeEU > 0D && freeEU <= gainEU)
             // {
             // freeEU = gainEU;

@@ -13,47 +13,47 @@ public class LogHelper {
         FMLLog.log(Reference.MOD_NAME, logLevel, String.valueOf(object));
     }
 
-    // off: 不紀錄log
+    // off: Disable logging.
     public static void off(Object object) {
         log(Level.OFF, object);
     }
 
-    // fatal: 紀錄程式停止運作的致命問題
+    // fatal: Log critical failures that stop the program.
     public static void fatal(Object object) {
         log(Level.FATAL, object);
     }
 
-    // error: 紀錄程式可能停止運作的問題
+    // error: Log problems that may stop the program.
     public static void error(Object object) {
         log(Level.ERROR, object);
     }
 
-    // warn: 紀錄可能導致error的問題
+    // warn: Log problems that may lead to errors.
     public static void warn(Object object) {
         log(Level.WARN, object);
     }
 
-    // log: 紀錄非debug模式也能顯示的訊息
+    // log: Log messages even when debug mode is off.
     public static void log(Object object) {
         log(Level.INFO, object);
     }
 
-    // info: 紀錄簡易的debug訊息
+    // info: Log basic diagnostic messages.
     public static void info(Object object) {
         if (ConfigHandler.debugMode) log(Level.INFO, object);
     }
 
-    // debug: 紀錄debug訊息
+    // debug: Log debugging details.
     public static void debug(Object object) {
         if (ConfigHandler.debugMode) log(Level.DEBUG, object);
     }
 
-    // trace: 同debug, 常用於追蹤程式動向
+    // trace: Log details used to follow program execution.
     public static void trace(Object object) {
         log(Level.TRACE, object);
     }
 
-    // all: 紀錄全部訊息
+    // all: Log all messages.
     public static void all(Object object) {
         log(Level.ALL, object);
     }

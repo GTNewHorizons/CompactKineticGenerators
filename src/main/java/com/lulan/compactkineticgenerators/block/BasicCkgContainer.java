@@ -13,33 +13,33 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 abstract public class BasicCkgContainer extends BlockContainer {
 
-    // 指定方塊類型block
+    // Create a block with the specified material.
     public BasicCkgContainer(Material material) {
         super(material);
-        this.setCreativeTab(CreativeTabCkg.CKG_TAB); // 加入到creative tab中
+        this.setCreativeTab(CreativeTabCkg.CKG_TAB); // Add to the creative tab.
     }
 
-    // 無指定類型時 預設為rock型
+    // Default to rock if no material is specified.
     public BasicCkgContainer() {
         this(Material.rock);
-        this.setCreativeTab(CreativeTabCkg.CKG_TAB); // 加入到creative tab中
+        this.setCreativeTab(CreativeTabCkg.CKG_TAB); // Add to the creative tab.
     }
 
-    // name設定用方法: 將原本mc給的block名稱 去掉.之前的字串 以便另外串上mod名稱形成的字串
+    // Strip Minecraft's prefix before adding the mod namespace.
     protected String getUnwrappedUnlocalizedName(String unlocalizedName) {
         return unlocalizedName.substring(unlocalizedName.indexOf(".") + 1);
     }
 
-    // 將name冠上mod名稱 用於之後給各語系檔案放上正確名稱
-    // 格式為tile.MOD名稱:方塊名稱.name
+    // Add the mod namespace for use in language files.
+    // Translation key format: tile.<namespace>:<block_name>.name
     @Override
     public String getUnlocalizedName() {
         return String.format("tile.ckg:%s", getUnwrappedUnlocalizedName(super.getUnlocalizedName()));
     }
 
-    // 方塊圖示登錄
-    // 取出方塊名稱(不含mod名稱)作為參數丟給icon register來登錄icon
-    // 注意icon只在client端才需要執行
+    // Block icon registration.
+    // Pass the block name without the tile. prefix to the icon registry.
+    // Icons are only registered on the client.
     @Override
     @SideOnly(Side.CLIENT)
     public void registerBlockIcons(IIconRegister iconRegister) {

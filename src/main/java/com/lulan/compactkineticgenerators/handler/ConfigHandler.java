@@ -12,7 +12,7 @@ import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
 public class ConfigHandler {
 
-    public static Configuration config; // 宣告config檔實體
+    public static Configuration config; // Configuration file handle.
 
     // GENERAL
     public static boolean debugMode = false;
@@ -25,10 +25,10 @@ public class ConfigHandler {
     public static double[] scaleOutputWater = new double[] { 4D, 16D, 64D, 256D };
     public static double[] scaleDamageWater = new double[] { 4D, 16D, 64D, 256D };
 
-    // 讀取設定檔參數
+    // Read settings from the configuration file.
     private static void loadConfiguration() {
 
-        // 是否開啟debug mode
+        // Check whether debug mode is enabled.
         debugMode = config.getBoolean("Debug Mode", "general", false, "Enable debug message (SPAM WARNING)");
 
         customKGTier = config.getInt(
@@ -55,7 +55,7 @@ public class ConfigHandler {
         scaleOutputWater = getDoubleArrayFromConfig(scaleOutputWater, propOutputWater);
         scaleDamageWater = getDoubleArrayFromConfig(scaleDamageWater, propDamageWater);
 
-        // 若設定檔有更新過, 則儲存
+        // Save the configuration if it changed.
         if (config.hasChanged()) {
             config.save();
         }
@@ -117,19 +117,19 @@ public class ConfigHandler {
         }
     }
 
-    // 設定檔處理 初始化動作
+    // Initialize the configuration.
     public static void init(File configFile) {
-        // 如果設定檔實體還未建立 則建立之
+        // Create the configuration if it has not been initialized.
         if (config == null) {
-            config = new Configuration(configFile); // 建立config檔實體
+            config = new Configuration(configFile); // Create the configuration instance.
             loadConfiguration();
         }
     }
 
-    // 若版本更新後 設定檔需要更新 則在此區塊增加更新方法
+    // Add configuration migrations here if a new version requires them.
     @SubscribeEvent
     public void onConfigurationChangedEvent(ConfigChangedEvent.OnConfigChangedEvent event) {
-        // 若設定檔的mod id跟目前mod id不同時 則進行更新
+        // Reload only if the event is for this mod.
         if (event.modID.equalsIgnoreCase(Reference.MOD_ID)) {
             loadConfiguration();
         }
