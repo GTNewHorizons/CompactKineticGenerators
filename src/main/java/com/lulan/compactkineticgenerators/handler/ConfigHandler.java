@@ -20,6 +20,9 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class ConfigHandler {
 
     @Config.Ignore
+    private static final int MIN_EXTREME_TIER = 7, MAX_EXTREME_TIER = 13;
+
+    @Config.Ignore
     private static final double LOW_SCALE = 4D, MEDIUM_SCALE = 16D, HIGH_SCALE = 64D, EXTREME_SCALE = 256D;
 
     @Config.Ignore
@@ -28,16 +31,18 @@ public class ConfigHandler {
     @Config.Name("ExtremeKG Tier")
     @Config.LangKey("compactkineticgenerators.config.extremeTier")
     @Config.Comment("Extreme Kinetic Generator energy tier, default 7 = max 131,072 EU/t")
-    @Config.DefaultInt(7)
-    @Config.RangeInt(min = 7, max = 13)
-    public static int customKGTier = 7;
+    @Config.DefaultInt(MIN_EXTREME_TIER)
+    @Config.RangeInt(min = MIN_EXTREME_TIER, max = MAX_EXTREME_TIER)
+    @Config.Sync
+    private static int customKGTier = MIN_EXTREME_TIER;
 
     @Config.Name("Wind Output Scale")
     @Config.LangKey("compactkineticgenerators.config.windOutput")
     @Config.Comment("output scale vs classic wind generator")
     @Config.DefaultDoubleList({ LOW_SCALE, MEDIUM_SCALE, HIGH_SCALE, EXTREME_SCALE })
     @Config.Entry(FixedScaleEntry.class)
-    public static double[] scaleOutput = DEFAULT_SCALE.clone();
+    @Config.Sync
+    private static double[] scaleOutput = DEFAULT_SCALE.clone();
 
     @Config.Name("Wind Rotor Damage Scale")
     @Config.LangKey("compactkineticgenerators.config.windRotorDamage")
@@ -51,7 +56,8 @@ public class ConfigHandler {
     @Config.Comment("output scale vs classic water generator")
     @Config.DefaultDoubleList({ LOW_SCALE, MEDIUM_SCALE, HIGH_SCALE, EXTREME_SCALE })
     @Config.Entry(FixedScaleEntry.class)
-    public static double[] scaleOutputWater = DEFAULT_SCALE.clone();
+    @Config.Sync
+    private static double[] scaleOutputWater = DEFAULT_SCALE.clone();
 
     @Config.Name("Water Rotor Damage Scale")
     @Config.LangKey("compactkineticgenerators.config.waterRotorDamage")
@@ -70,6 +76,16 @@ public class ConfigHandler {
             scaleDamageWater = validateScale(scaleDamageWater);
             ConfigurationManager.save(ConfigHandler.class);
         }
+    }
+
+    public static int getExtremeTier() {
+        return Math.max(MIN_EXTREME_TIER, Math.min(MAX_EXTREME_TIER, customKGTier));
+    }
+
+    public static double getOutputScale(boolean water, int tier) {
+        // GTNHLib does not enforce list length on values received from the server.
+        double[] scale = water ? scaleOutputWater : scaleOutput;
+        return (scale.length == DEFAULT_SCALE.length ? scale : DEFAULT_SCALE)[tier];
     }
 
     private static double[] validateScale(double[] scale) {

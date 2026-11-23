@@ -105,7 +105,7 @@ public class KineticGeneratorTileEntity extends TileEntityKineticGenerator {
     }
 
     public static int getSourceTier(int type) {
-        return type >= 3 ? ConfigHandler.customKGTier : 4 + type;
+        return type >= 3 ? ConfigHandler.getExtremeTier() : 4 + type;
     }
 
     @Override

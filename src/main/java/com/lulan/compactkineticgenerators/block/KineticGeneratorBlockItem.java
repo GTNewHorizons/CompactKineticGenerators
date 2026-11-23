@@ -40,7 +40,7 @@ public class KineticGeneratorBlockItem extends ItemBlockWithMetadata {
             return;
         }
         if (meta <= 7) {
-            double scale = meta <= 3 ? ConfigHandler.scaleOutput[meta] : ConfigHandler.scaleOutputWater[meta - 4];
+            double scale = ConfigHandler.getOutputScale(meta >= 4, meta % 4);
             String multiplier = NumberFormatUtil.formatNumber(scale);
             list.add(StatCollector.translateToLocalFormatted("tooltip.ckg.outputScale", multiplier));
             return;
