@@ -8,9 +8,11 @@ import com.lulan.compactkineticgenerators.init.ModBlocks;
 import com.lulan.compactkineticgenerators.init.ModItems;
 import com.lulan.compactkineticgenerators.init.ModRecipes;
 import com.lulan.compactkineticgenerators.init.ModTileentity;
+import com.lulan.compactkineticgenerators.proxy.CommonProxy;
 import com.lulan.compactkineticgenerators.reference.Reference;
 
 import cpw.mods.fml.common.Mod;
+import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 
@@ -23,6 +25,11 @@ public class CompactKineticGenerators {
 
     @Mod.Instance(Reference.MOD_ID)
     public static CompactKineticGenerators instance;
+
+    @SidedProxy(
+        clientSide = "com.lulan.compactkineticgenerators.proxy.ClientProxy",
+        serverSide = "com.lulan.compactkineticgenerators.proxy.CommonProxy")
+    public static CommonProxy proxy;
 
     public static final Logger LOGGER = LogManager.getLogger(Reference.MOD_NAME);
 
