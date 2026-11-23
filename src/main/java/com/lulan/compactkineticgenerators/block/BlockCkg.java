@@ -269,8 +269,7 @@ public class BlockCkg extends BasicCkgContainer {
         TileEntity tile = world.getTileEntity(x, y, z);
 
         // Drop the contents of each inventory slot as item entities.
-        if (tile instanceof ISidedInventory) {
-            ISidedInventory tile2 = (ISidedInventory) tile;
+        if (tile instanceof ISidedInventory tile2) {
             // for all slots
             for (int i = 0; i < tile2.getSizeInventory(); i++) {
                 ItemStack itemstack = tile2.getStackInSlot(i);
@@ -341,8 +340,7 @@ public class BlockCkg extends BasicCkgContainer {
     public void onBlockPlacedBy(World world, int x, int y, int z, EntityLivingBase entity, ItemStack itemStack) {
         TileEntity tile = world.getTileEntity(x, y, z);
 
-        if ((tile instanceof IWrenchable) && itemStack != null) {
-            IWrenchable tile2 = (IWrenchable) tile;
+        if ((tile instanceof IWrenchable tile2) && itemStack != null) {
 
             // set meta value
             int meta = itemStack.getItemDamage();
@@ -380,8 +378,7 @@ public class BlockCkg extends BasicCkgContainer {
         TileEntity tile = world.getTileEntity(x, y, z);
 
         // unload from e-net
-        if (tile instanceof BasicTileCkg) {
-            BasicTileCkg ckg = (BasicTileCkg) tile;
+        if (tile instanceof BasicTileCkg ckg) {
             ckg.onBlockBreak(this, meta);
             ckg.onUnloaded();
         }
