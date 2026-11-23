@@ -229,21 +229,9 @@ public class BlockCkg extends BasicCkgContainer {
     @Override
     @SideOnly(Side.CLIENT)
     public void getSubBlocks(Item item, CreativeTabs ctab, List<ItemStack> list) {
-        // wind mills
-        list.add(new ItemStack(item, 1, 0));
-        list.add(new ItemStack(item, 1, 1));
-        list.add(new ItemStack(item, 1, 2));
-        list.add(new ItemStack(item, 1, 3));
-        // wateer mills
-        list.add(new ItemStack(item, 1, 4));
-        list.add(new ItemStack(item, 1, 5));
-        list.add(new ItemStack(item, 1, 6));
-        list.add(new ItemStack(item, 1, 7));
-        // kinetic generators
-        list.add(new ItemStack(item, 1, 8));
-        list.add(new ItemStack(item, 1, 9));
-        list.add(new ItemStack(item, 1, 10));
-        list.add(new ItemStack(item, 1, 11));
+        for (int meta = 0; meta < 12; meta++) {
+            list.add(new ItemStack(item, 1, meta));
+        }
     }
 
     // set facing when placed

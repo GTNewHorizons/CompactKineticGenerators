@@ -2,7 +2,6 @@ package com.lulan.compactkineticgenerators.creativetab;
 
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 
 import com.lulan.compactkineticgenerators.init.ModBlocks;
 import com.lulan.compactkineticgenerators.reference.Reference;
@@ -15,7 +14,7 @@ public class CreativeTabCkg {
         // Creative tab icon.
         @Override
         public Item getTabIconItem() {
-            return new ItemStack(ModBlocks.BlockCkg, 1, 3).getItem();
+            return Item.getItemFromBlock(ModBlocks.BlockCkg);
         }
 
         // The tab label is localized automatically; no need to override getTranslatedTabLabel.
