@@ -3,6 +3,7 @@ package com.lulan.compactkineticgenerators.item;
 import java.util.List;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
@@ -67,18 +68,17 @@ public class IridiumRotor extends BasicCkgItem implements IKineticRotor {
         return true;
     }
 
+    @Override
     public void addInformation(ItemStack itemStack, EntityPlayer player, List<String> info, boolean b) {
         info.add(StatCollector.translateToLocalFormatted("ic2.itemrotor.wind.info", minWindStrength, maxWindStrength));
 
-        IKineticRotor.GearboxType type = null;
-
-        if (Minecraft.getMinecraft().currentScreen != null
-            && Minecraft.getMinecraft().currentScreen instanceof GuiWaterKineticGenerator) {
-            type = IKineticRotor.GearboxType.WATER;
-        } else if ((Minecraft.getMinecraft().currentScreen != null)
-            && ((Minecraft.getMinecraft().currentScreen instanceof GuiWindKineticGenerator))) {
-                type = IKineticRotor.GearboxType.WIND;
-            }
+        GuiScreen screen = Minecraft.getMinecraft().currentScreen;
+        GearboxType type = null;
+        if (screen instanceof GuiWaterKineticGenerator) {
+            type = GearboxType.WATER;
+        } else if (screen instanceof GuiWindKineticGenerator) {
+            type = GearboxType.WIND;
+        }
 
         if (type != null) {
             info.add(StatCollector.translateToLocal("ic2.itemrotor.fitsin." + isAcceptedType(itemStack, type)));
