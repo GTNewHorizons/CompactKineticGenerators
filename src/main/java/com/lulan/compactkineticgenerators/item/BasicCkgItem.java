@@ -22,14 +22,12 @@ public class BasicCkgItem extends Item {
         return unlocalizedName.substring(unlocalizedName.indexOf(".") + 1);
     }
 
-    // Add the mod namespace for use in language files.
     // Translation key format: item.<namespace>:<item_name>.name
     @Override
     public String getUnlocalizedName() {
         return "item." + Reference.MOD_ID + ":" + getUnwrappedUnlocalizedName(super.getUnlocalizedName());
     }
 
-    // ItemStack overload of getUnlocalizedName().
     // Positive metadata is appended to the item name in the translation key.
     @Override
     public String getUnlocalizedName(ItemStack itemstack) {
@@ -38,9 +36,6 @@ public class BasicCkgItem extends Item {
         return meta > 0 ? name + meta : name;
     }
 
-    // Item icon registration.
-    // Pass the item name without the item. prefix to the icon registry.
-    // Icons are only registered on the client.
     @Override
     @SideOnly(Side.CLIENT)
     public void registerIcons(IIconRegister iconRegister) {

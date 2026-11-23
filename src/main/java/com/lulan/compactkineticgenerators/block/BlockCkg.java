@@ -151,10 +151,6 @@ public class BlockCkg extends BasicCkgContainer {
         };
     }
 
-    /**
-     * Called when a player right-clicks the block.
-     * Arguments: world, block coordinates, player, clicked face, and hit position within the block.
-     */
     @Override
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float hitX,
         float hitY, float hitZ) {
@@ -174,7 +170,6 @@ public class BlockCkg extends BasicCkgContainer {
         return meta;
     }
 
-    // Drop the block's inventory when it breaks.
     @Override
     public void breakBlock(World world, int x, int y, int z, Block block, int meta) {
         TileEntity tile = world.getTileEntity(x, y, z);
@@ -221,7 +216,6 @@ public class BlockCkg extends BasicCkgContainer {
         }
     }
 
-    // set facing when placed
     @Override
     public void onBlockPlacedBy(World world, int x, int y, int z, EntityLivingBase entity, ItemStack itemStack) {
         TileEntity tile = world.getTileEntity(x, y, z);

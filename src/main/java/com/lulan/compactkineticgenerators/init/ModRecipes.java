@@ -9,12 +9,7 @@ import ic2.api.item.IC2Items;
 
 public class ModRecipes {
 
-    // Recipe examples.
-    // GameRegistry.addSmelting(input, output, 0.1f);
-    // GameRegistry.addRecipe(new ShapedOreRecipe(output, " s ", "sss", " s ", 's', "stickWood"));
-    // GameRegistry.addRecipe(new ShapelessOreRecipe(output, ingredientA, ingredientB, ...));
     public static void init() {
-        // Recipe ingredients and outputs.
         ItemStack refironCasing = IC2Items.getItem("casingadviron");
         ItemStack refironShaft = IC2Items.getItem("steelshaft");
         ItemStack advAlloy = IC2Items.getItem("advancedAlloy");
@@ -48,10 +43,6 @@ public class ModRecipes {
         ItemStack hvg = new ItemStack(ModBlocks.BlockCkg, 1, 10);
         ItemStack evg = new ItemStack(ModBlocks.BlockCkg, 1, 11);
 
-        // SHAPELESS RECIPE
-        // GameRegistry.addRecipe(new ShapelessOreRecipe(waypoint, grudeStack, Items.stick));
-
-        // SHAPED RECIPE
         // rotor
         GameRegistry.addRecipe(new ShapedOreRecipe(iriBlade, "pop", "pop", "pop", 'p', iriPlate, 'o', iriOre));
         GameRegistry.addRecipe(new ShapedOreRecipe(iriRotor, " b ", "bbb", " b ", 'b', iriBlade));
@@ -89,7 +80,6 @@ public class ModRecipes {
             new ShapedOreRecipe(hvg, "ccc", "gms", "ccc", 'c', advAlloy, 'g', lapCrystal, 'm', mvg, 's', advAlloy));
         GameRegistry.addRecipe(
             new ShapedOreRecipe(evg, "ccc", "gms", "ccc", 'c', iriPlate, 'g', mfsu, 'm', hvg, 's', iriPlate));
-
     }
 
 }

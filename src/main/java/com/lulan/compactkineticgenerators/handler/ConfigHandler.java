@@ -7,7 +7,7 @@ import net.minecraftforge.common.config.Property;
 
 public class ConfigHandler {
 
-    public static Configuration config; // Configuration file handle.
+    public static Configuration config;
 
     public static int customKGTier = 7;
 
@@ -16,7 +16,6 @@ public class ConfigHandler {
     public static double[] scaleOutputWater = new double[] { 4D, 16D, 64D, 256D };
     public static double[] scaleDamageWater = new double[] { 4D, 16D, 64D, 256D };
 
-    // Read settings from the configuration file.
     private static void loadConfiguration() {
 
         // Keep the legacy key in generated configs.
@@ -47,13 +46,11 @@ public class ConfigHandler {
         scaleOutputWater = getDoubleArrayFromConfig(scaleOutputWater, propOutputWater);
         scaleDamageWater = getDoubleArrayFromConfig(scaleDamageWater, propDamageWater);
 
-        // Save the configuration if it changed.
         if (config.hasChanged()) {
             config.save();
         }
     }
 
-    // check get value
     public static double[] getDoubleArrayFromConfig(double[] defaultValue, Property target) {
         int size = defaultValue.length;
         double[] getd = target.getDoubleList();
@@ -66,11 +63,9 @@ public class ConfigHandler {
         }
     }
 
-    // Initialize the configuration.
     public static void init(File configFile) {
-        // Create the configuration if it has not been initialized.
         if (config == null) {
-            config = new Configuration(configFile); // Create the configuration instance.
+            config = new Configuration(configFile);
             loadConfiguration();
         }
     }

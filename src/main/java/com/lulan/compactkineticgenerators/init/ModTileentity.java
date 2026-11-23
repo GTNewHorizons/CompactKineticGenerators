@@ -28,7 +28,7 @@ public class ModTileentity {
         GameRegistry.registerTileEntity(TileCkwaM.class, "TileEntityCkwaM");
         GameRegistry.registerTileEntity(TileCkwaH.class, "TileEntityCkwaH");
         GameRegistry.registerTileEntity(TileCkwaE.class, "TileEntityCkwaE");
-        // wind mills
+        // kinetic generators
         GameRegistry.registerTileEntity(TileCkgL.class, "TileEntityCkgL");
         GameRegistry.registerTileEntity(TileCkgM.class, "TileEntityCkgM");
         GameRegistry.registerTileEntity(TileCkgH.class, "TileEntityCkgH");

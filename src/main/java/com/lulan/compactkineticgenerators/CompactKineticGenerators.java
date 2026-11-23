@@ -22,42 +22,31 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
     dependencies = "required-after:Forge@[10.13,);required-after:IC2@[2.2,)")
 public class CompactKineticGenerators {
 
-    // mod instance
     @Mod.Instance(Reference.MOD_ID)
     public static CompactKineticGenerators instance;
 
     public static final Logger LOGGER = LogManager.getLogger(Reference.MOD_NAME);
 
-    /** pre initial: load config, block/item/entity/render init, event handler init */
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event) {
-        // config inti
-        ConfigHandler.init(event.getSuggestedConfigurationFile()); // load config file
-
+        ConfigHandler.init(event.getSuggestedConfigurationFile());
         ModItems.init();
-
         ModBlocks.init();
 
-        LOGGER.info("DEBUG : preInit complete."); // debug
+        LOGGER.info("DEBUG : preInit complete.");
     }
 
-    /**
-     * initial: recipe/tileentity/gui/worldgen init, event handler regist, create data handler,
-     * request mod interact AND oreDictionary registr
-     */
     @Mod.EventHandler
     public void Init(FMLInitializationEvent event) {
         ModRecipes.init();
-
         ModTileentity.init();
 
         LOGGER.info("DEBUG : Init complete.");
     }
 
-    /** post initial: mod interact */
     @Mod.EventHandler
     public void postInit(FMLPostInitializationEvent event) {
-        LOGGER.info("DEBUG : postInit complete."); // debug
+        LOGGER.info("DEBUG : postInit complete.");
     }
 
 }

@@ -22,7 +22,6 @@ abstract public class BasicTileCkwm extends TileEntityWindKineticGenerator {
         this.ckwmType = type;
         this.tick = 0;
 
-        // setup scale
         try {
             this.scaleOutput = (float) ConfigHandler.scaleOutput[this.ckwmType];
             this.scaleDamage = (float) ConfigHandler.scaleDamage[this.ckwmType];
@@ -54,17 +53,15 @@ abstract public class BasicTileCkwm extends TileEntityWindKineticGenerator {
         return (int) (scaleOutput * super.getKuOutput());
     }
 
-    // Read data from NBT.
     @Override
     public void readFromNBT(NBTTagCompound nbt) {
-        super.readFromNBT(nbt); // Read the block's coordinates from NBT.
+        super.readFromNBT(nbt);
 
         ckwmType = nbt.getInteger("type");
         scaleOutput = nbt.getFloat("scale");
         scaleDamage = nbt.getFloat("damage");
     }
 
-    // Write data to NBT.
     @Override
     public void writeToNBT(NBTTagCompound nbt) {
         super.writeToNBT(nbt);

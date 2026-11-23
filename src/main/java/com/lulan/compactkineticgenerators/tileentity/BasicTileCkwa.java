@@ -22,7 +22,6 @@ public class BasicTileCkwa extends TileEntityWaterKineticGenerator {
         this.ckwaType = type;
         this.tick = 0;
 
-        // setup scale
         try {
             this.scaleOutput = (float) ConfigHandler.scaleOutputWater[this.ckwaType];
             this.scaleDamage = (float) ConfigHandler.scaleDamageWater[this.ckwaType];
@@ -54,17 +53,15 @@ public class BasicTileCkwa extends TileEntityWaterKineticGenerator {
         return (int) (scaleOutput * super.getKuOutput());
     }
 
-    // Read data from NBT.
     @Override
     public void readFromNBT(NBTTagCompound nbt) {
-        super.readFromNBT(nbt); // Read the block's coordinates from NBT.
+        super.readFromNBT(nbt);
 
         ckwaType = nbt.getInteger("ckwaType");
         scaleOutput = nbt.getFloat("scale");
         scaleDamage = nbt.getFloat("damage");
     }
 
-    // Write data to NBT.
     @Override
     public void writeToNBT(NBTTagCompound nbt) {
         super.writeToNBT(nbt);

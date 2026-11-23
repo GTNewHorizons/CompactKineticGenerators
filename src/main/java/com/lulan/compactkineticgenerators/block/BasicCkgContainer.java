@@ -13,16 +13,14 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 abstract public class BasicCkgContainer extends BlockContainer {
 
-    // Create a block with the specified material.
     public BasicCkgContainer(Material material) {
         super(material);
-        this.setCreativeTab(CreativeTabCkg.CKG_TAB); // Add to the creative tab.
+        this.setCreativeTab(CreativeTabCkg.CKG_TAB);
     }
 
-    // Default to rock if no material is specified.
     public BasicCkgContainer() {
         this(Material.rock);
-        this.setCreativeTab(CreativeTabCkg.CKG_TAB); // Add to the creative tab.
+        this.setCreativeTab(CreativeTabCkg.CKG_TAB);
     }
 
     // Strip Minecraft's prefix before adding the mod namespace.
@@ -30,16 +28,12 @@ abstract public class BasicCkgContainer extends BlockContainer {
         return unlocalizedName.substring(unlocalizedName.indexOf(".") + 1);
     }
 
-    // Add the mod namespace for use in language files.
     // Translation key format: tile.<namespace>:<block_name>.name
     @Override
     public String getUnlocalizedName() {
         return "tile.ckg:" + getUnwrappedUnlocalizedName(super.getUnlocalizedName());
     }
 
-    // Block icon registration.
-    // Pass the block name without the tile. prefix to the icon registry.
-    // Icons are only registered on the client.
     @Override
     @SideOnly(Side.CLIENT)
     public void registerBlockIcons(IIconRegister iconRegister) {
