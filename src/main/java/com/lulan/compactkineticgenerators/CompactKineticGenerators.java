@@ -12,7 +12,6 @@ import com.lulan.compactkineticgenerators.reference.Reference;
 
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
-import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 
 @Mod(
@@ -32,21 +31,12 @@ public class CompactKineticGenerators {
         ConfigHandler.init(event.getSuggestedConfigurationFile());
         ModItems.init();
         ModBlocks.init();
-
-        LOGGER.info("DEBUG : preInit complete.");
     }
 
     @Mod.EventHandler
     public void Init(FMLInitializationEvent event) {
         ModRecipes.init();
         ModTileentity.init();
-
-        LOGGER.info("DEBUG : Init complete.");
-    }
-
-    @Mod.EventHandler
-    public void postInit(FMLPostInitializationEvent event) {
-        LOGGER.info("DEBUG : postInit complete.");
     }
 
 }

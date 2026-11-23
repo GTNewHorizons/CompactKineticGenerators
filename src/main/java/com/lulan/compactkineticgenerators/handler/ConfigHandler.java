@@ -17,10 +17,6 @@ public class ConfigHandler {
     public static double[] scaleDamageWater = new double[] { 4D, 16D, 64D, 256D };
 
     private static void loadConfiguration() {
-
-        // Keep the legacy key in generated configs.
-        config.getBoolean("Debug Mode", "general", false, "Enable debug message (SPAM WARNING)");
-
         customKGTier = config.getInt(
             "ExtremeKG Tier",
             "general",
