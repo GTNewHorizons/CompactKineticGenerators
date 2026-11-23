@@ -18,7 +18,6 @@ public class BasicTileCkg extends TileEntityKineticGenerator {
     public int type;
     protected double guiproduction = 0.0D;
     protected double production = 0.0D;
-    protected int receivedkinetic = 0;
     protected final int MaxStorage;
     protected final double productionpeerkineticunit;
 
@@ -34,22 +33,12 @@ public class BasicTileCkg extends TileEntityKineticGenerator {
             * ConfigUtil.getFloat(MainConfig.get(), "balance/energy/generator/Kinetic"));
         this.updateTicker = IC2.random.nextInt(getTickRate());
 
-        // EU storage
-        switch (this.type) {
-            case 1:
-                this.MaxStorage = 4000000;
-                break;
-            case 2:
-                this.MaxStorage = 10000000;
-                break;
-            case 3:
-                this.MaxStorage = 40000000;
-                break;
-            default:
-                this.MaxStorage = 1000000;
-                break;
-        }
-
+        this.MaxStorage = switch (this.type) {
+            case 1 -> 4_000_000;
+            case 2 -> 10_000_000;
+            case 3 -> 40_000_000;
+            default -> 1_000_000;
+        };
     }
 
     @Override
@@ -77,22 +66,19 @@ public class BasicTileCkg extends TileEntityKineticGenerator {
         TileEntity te = this.worldObj
             .getTileEntity(this.xCoord + dir.offsetX, this.yCoord + dir.offsetY, this.zCoord + dir.offsetZ);
 
-        if ((te instanceof IKineticSource)) {
-            // Find the maximum KU available this tick.
-            int kineticbandwith = ((IKineticSource) te).maxrequestkineticenergyTick(dir.getOpposite());
+        if (te instanceof IKineticSource source) {
+            ForgeDirection from = dir.getOpposite();
+            int bandwidth = source.maxrequestkineticenergyTick(from);
+            int received = source.requestkineticenergy(from, bandwidth);
 
-            // Request all available KU.
-            this.receivedkinetic = ((IKineticSource) te).requestkineticenergy(dir.getOpposite(), kineticbandwith);
-
-            if (this.receivedkinetic >= 0) {
-                this.production = this.receivedkinetic * this.productionpeerkineticunit;
+            if (received >= 0) {
+                this.production = received * this.productionpeerkineticunit;
                 this.EUstorage += this.production;
                 return true;
             }
         }
 
         this.production = 0D;
-        this.receivedkinetic = 0;
         return false;
     }
 
@@ -111,12 +97,7 @@ public class BasicTileCkg extends TileEntityKineticGenerator {
     // 4 = 2048, 5 = 8192, 6 = 32768, 7 = 131072
     @Override
     public int getSourceTier() {
-        // custom type
-        if (this.type >= 3) {
-            return ConfigHandler.customKGTier;
-        } else {
-            return 4 + this.type;
-        }
+        return this.type >= 3 ? ConfigHandler.customKGTier : 4 + this.type;
     }
 
     @Override
