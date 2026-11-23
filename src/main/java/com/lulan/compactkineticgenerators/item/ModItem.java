@@ -4,17 +4,17 @@ import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
-import com.lulan.compactkineticgenerators.creativetab.CreativeTabCkg;
+import com.lulan.compactkineticgenerators.creativetab.ModCreativeTab;
 import com.lulan.compactkineticgenerators.reference.Reference;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class BasicCkgItem extends Item {
+public class ModItem extends Item {
 
-    public BasicCkgItem() {
+    public ModItem() {
         super();
-        this.setCreativeTab(CreativeTabCkg.CKG_TAB);
+        this.setCreativeTab(ModCreativeTab.CKG_TAB);
     }
 
     // Strip Minecraft's prefix before adding the mod namespace.

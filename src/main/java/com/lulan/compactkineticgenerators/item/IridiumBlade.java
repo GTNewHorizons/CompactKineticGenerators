@@ -1,6 +1,6 @@
 package com.lulan.compactkineticgenerators.item;
 
-public class IridiumBlade extends BasicCkgItem {
+public class IridiumBlade extends ModItem {
 
     public IridiumBlade() {
         super();

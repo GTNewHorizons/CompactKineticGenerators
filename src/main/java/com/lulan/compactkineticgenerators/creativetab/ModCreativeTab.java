@@ -6,7 +6,7 @@ import net.minecraft.item.Item;
 import com.lulan.compactkineticgenerators.init.ModBlocks;
 import com.lulan.compactkineticgenerators.reference.Reference;
 
-public class CreativeTabCkg {
+public class ModCreativeTab {
 
     public static final CreativeTabs CKG_TAB = new CreativeTabs(Reference.MOD_ID) {
 

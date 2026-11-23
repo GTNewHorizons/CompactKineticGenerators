@@ -10,9 +10,9 @@ import net.minecraft.util.StatCollector;
 
 import com.lulan.compactkineticgenerators.handler.ConfigHandler;
 
-public class ItemBlockCkg extends ItemBlockWithMetadata {
+public class KineticGeneratorBlockItem extends ItemBlockWithMetadata {
 
-    public ItemBlockCkg(Block b1) {
+    public KineticGeneratorBlockItem(Block b1) {
         super(b1, b1);
     }
 

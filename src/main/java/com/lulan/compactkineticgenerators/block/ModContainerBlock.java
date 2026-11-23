@@ -6,21 +6,21 @@ import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
-import com.lulan.compactkineticgenerators.creativetab.CreativeTabCkg;
+import com.lulan.compactkineticgenerators.creativetab.ModCreativeTab;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-abstract public class BasicCkgContainer extends BlockContainer {
+abstract public class ModContainerBlock extends BlockContainer {
 
-    public BasicCkgContainer(Material material) {
+    public ModContainerBlock(Material material) {
         super(material);
-        this.setCreativeTab(CreativeTabCkg.CKG_TAB);
+        this.setCreativeTab(ModCreativeTab.CKG_TAB);
     }
 
-    public BasicCkgContainer() {
+    public ModContainerBlock() {
         this(Material.rock);
-        this.setCreativeTab(CreativeTabCkg.CKG_TAB);
+        this.setCreativeTab(ModCreativeTab.CKG_TAB);
     }
 
     // Strip Minecraft's prefix before adding the mod namespace.

@@ -47,7 +47,7 @@ import ic2.core.IHasGui;
  * 4:Water L, 5:Water M, 6:Water H, 7:Water E
  * 8:KineticGenerator L, 9:KineticGenerator M, 10:KineticGenerator H, 11:KineticGenerator E
  */
-public class BlockCkg extends BasicCkgContainer {
+public class KineticGeneratorBlock extends ModContainerBlock {
 
     // [face][side], iconID: 6:head, 7:tail, 8:side, 9:top, 10:btm (0~5 save for vanilla icon method)
     public static final int[][] face2iconID = { { 6, 7, 8, 8, 8, 8 }, // face btm(0)
@@ -58,7 +58,7 @@ public class BlockCkg extends BasicCkgContainer {
         { 10, 9, 8, 8, 7, 6 } };// face E(5)
     IIcon[] icons = new IIcon[22];
 
-    public BlockCkg() {
+    public KineticGeneratorBlock() {
         super(Material.iron);
         this.setBlockName("BlockCkg");
         this.setStepSound(soundTypeMetal);

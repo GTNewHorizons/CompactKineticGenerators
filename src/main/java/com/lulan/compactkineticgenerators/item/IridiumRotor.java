@@ -14,7 +14,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import ic2.api.item.IKineticRotor;
 
-public class IridiumRotor extends BasicCkgItem implements IKineticRotor {
+public class IridiumRotor extends ModItem implements IKineticRotor {
 
     protected static final ResourceLocation tx = new ResourceLocation(Reference.TEXTURES_ITEMS + "IridiumRotorTx.png");
     protected static int maxWindStrength;
