@@ -99,88 +99,88 @@ public class BlockCkg extends BasicCkgContainer {
         try {
             // wind mills
             if (meta <= 3) {
-                switch (side) {
-                    case 0: // default top
-                        return icons[12];
-                    case 1: // default btm
-                        return icons[13];
-                    case 2: // default tail
-                        return icons[meta * 3 + 1];
-                    case 3: // default head
-                        return icons[meta * 3];
-                    case 4: // default side
-                        return icons[meta * 3 + 2];
-                    case 5: // default side
-                        return icons[meta * 3 + 2];
-                    case 6: // head
-                        return icons[meta * 3];
-                    case 7: // tail
-                        return icons[meta * 3 + 1];
-                    case 8: // side
-                        return icons[meta * 3 + 2];
-                    case 9: // top
-                        return icons[12];
-                    default: // btm
-                        return icons[13];
-                }
+                return switch (side) {
+                    case 0 -> // default top
+                        icons[12];
+                    case 1 -> // default btm
+                        icons[13];
+                    case 2 -> // default tail
+                        icons[meta * 3 + 1];
+                    case 3 -> // default head
+                        icons[meta * 3];
+                    case 4 -> // default side
+                        icons[meta * 3 + 2];
+                    case 5 -> // default side
+                        icons[meta * 3 + 2];
+                    case 6 -> // head
+                        icons[meta * 3];
+                    case 7 -> // tail
+                        icons[meta * 3 + 1];
+                    case 8 -> // side
+                        icons[meta * 3 + 2];
+                    case 9 -> // top
+                        icons[12];
+                    default -> // btm
+                        icons[13];
+                };
             }
             // water mills
             else if (meta <= 7) {
                 meta -= 4;
 
-                switch (side) {
-                    case 0: // default top
-                        return icons[12];
-                    case 1: // default btm
-                        return icons[13];
-                    case 2: // default tail
-                        return icons[meta * 3 + 1];
-                    case 3: // default head
-                        return icons[meta * 3];
-                    case 4: // default side
-                        return icons[meta * 3 + 2];
-                    case 5: // default side
-                        return icons[meta * 3 + 2];
-                    case 6: // head
-                        return icons[meta + 14];
-                    case 7: // tail
-                        return icons[meta * 3 + 1];
-                    case 8: // side
-                        return icons[meta * 3 + 2];
-                    case 9: // top
-                        return icons[12];
-                    default: // btm
-                        return icons[13];
-                }
+                return switch (side) {
+                    case 0 -> // default top
+                        icons[12];
+                    case 1 -> // default btm
+                        icons[13];
+                    case 2 -> // default tail
+                        icons[meta * 3 + 1];
+                    case 3 -> // default head
+                        icons[meta * 3];
+                    case 4 -> // default side
+                        icons[meta * 3 + 2];
+                    case 5 -> // default side
+                        icons[meta * 3 + 2];
+                    case 6 -> // head
+                        icons[meta + 14];
+                    case 7 -> // tail
+                        icons[meta * 3 + 1];
+                    case 8 -> // side
+                        icons[meta * 3 + 2];
+                    case 9 -> // top
+                        icons[12];
+                    default -> // btm
+                        icons[13];
+                };
             }
             // kinetic generators
             else {
                 meta -= 8;
 
-                switch (side) {
-                    case 0: // default top
-                        return icons[12];
-                    case 1: // default btm
-                        return icons[13];
-                    case 2: // default tail
-                        return icons[meta * 3 + 1];
-                    case 3: // default head
-                        return icons[meta * 3];
-                    case 4: // default side
-                        return icons[meta * 3 + 2];
-                    case 5: // default side
-                        return icons[meta * 3 + 2];
-                    case 6: // head
-                        return icons[meta * 3];
-                    case 7: // tail
-                        return icons[meta + 18];
-                    case 8: // side
-                        return icons[meta * 3 + 2];
-                    case 9: // top
-                        return icons[12];
-                    default: // btm
-                        return icons[13];
-                }
+                return switch (side) {
+                    case 0 -> // default top
+                        icons[12];
+                    case 1 -> // default btm
+                        icons[13];
+                    case 2 -> // default tail
+                        icons[meta * 3 + 1];
+                    case 3 -> // default head
+                        icons[meta * 3];
+                    case 4 -> // default side
+                        icons[meta * 3 + 2];
+                    case 5 -> // default side
+                        icons[meta * 3 + 2];
+                    case 6 -> // head
+                        icons[meta * 3];
+                    case 7 -> // tail
+                        icons[meta + 18];
+                    case 8 -> // side
+                        icons[meta * 3 + 2];
+                    case 9 -> // top
+                        icons[12];
+                    default -> // btm
+                        icons[13];
+                };
             }
         } catch (Exception e) {
             CompactKineticGenerators.LOGGER.error(e);
@@ -201,35 +201,23 @@ public class BlockCkg extends BasicCkgContainer {
 
     @Override
     public TileEntity createNewTileEntity(World world, int meta) {
-        switch (meta) {
+        return switch (meta) {
             // wind mills
-            case 1:
-                return new TileCkwmM();
-            case 2:
-                return new TileCkwmH();
-            case 3:
-                return new TileCkwmE();
+            case 1 -> new TileCkwmM();
+            case 2 -> new TileCkwmH();
+            case 3 -> new TileCkwmE();
             // water mills
-            case 4:
-                return new TileCkwaL();
-            case 5:
-                return new TileCkwaM();
-            case 6:
-                return new TileCkwaH();
-            case 7:
-                return new TileCkwaE();
+            case 4 -> new TileCkwaL();
+            case 5 -> new TileCkwaM();
+            case 6 -> new TileCkwaH();
+            case 7 -> new TileCkwaE();
             // kinetic generators
-            case 8:
-                return new TileCkgL();
-            case 9:
-                return new TileCkgM();
-            case 10:
-                return new TileCkgH();
-            case 11:
-                return new TileCkgE();
-            default:
-                return new TileCkwmL();
-        }
+            case 8 -> new TileCkgL();
+            case 9 -> new TileCkgM();
+            case 10 -> new TileCkgH();
+            case 11 -> new TileCkgE();
+            default -> new TileCkwmL();
+        };
     }
 
     /**
