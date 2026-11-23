@@ -11,6 +11,8 @@ import net.minecraft.util.StatCollector;
 
 import com.lulan.compactkineticgenerators.reference.Reference;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import ic2.api.item.IKineticRotor;
 import ic2.core.block.kineticgenerator.gui.GuiWaterKineticGenerator;
 import ic2.core.block.kineticgenerator.gui.GuiWindKineticGenerator;
@@ -69,6 +71,7 @@ public class IridiumRotor extends BasicCkgItem implements IKineticRotor {
     }
 
     @Override
+    @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack itemStack, EntityPlayer player, List<String> info, boolean b) {
         info.add(StatCollector.translateToLocalFormatted("ic2.itemrotor.wind.info", minWindStrength, maxWindStrength));
 
