@@ -1,0 +1,9 @@
+package com.lulan.compactkineticgenerators.tileentity;
+
+public class ExtremeWindKineticGeneratorTileEntity extends WindKineticGeneratorTileEntity {
+
+    public ExtremeWindKineticGeneratorTileEntity() {
+        super(3);
+    }
+
+}

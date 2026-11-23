@@ -7,7 +7,7 @@ import com.lulan.compactkineticgenerators.handler.ConfigHandler;
 import com.lulan.compactkineticgenerators.init.ModBlocks;
 import com.lulan.compactkineticgenerators.init.ModItems;
 import com.lulan.compactkineticgenerators.init.ModRecipes;
-import com.lulan.compactkineticgenerators.init.ModTileentity;
+import com.lulan.compactkineticgenerators.init.ModTileEntities;
 import com.lulan.compactkineticgenerators.proxy.CommonProxy;
 import com.lulan.compactkineticgenerators.reference.Reference;
 
@@ -43,7 +43,7 @@ public class CompactKineticGenerators {
     @Mod.EventHandler
     public void Init(FMLInitializationEvent event) {
         ModRecipes.init();
-        ModTileentity.init();
+        ModTileEntities.init();
     }
 
 }

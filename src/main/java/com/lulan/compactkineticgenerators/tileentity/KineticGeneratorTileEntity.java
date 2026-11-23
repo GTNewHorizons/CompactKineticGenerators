@@ -13,7 +13,7 @@ import ic2.core.block.generator.tileentity.TileEntityKineticGenerator;
 import ic2.core.init.MainConfig;
 import ic2.core.util.ConfigUtil;
 
-public class BasicTileCkg extends TileEntityKineticGenerator {
+public class KineticGeneratorTileEntity extends TileEntityKineticGenerator {
 
     public int type;
     protected double guiproduction = 0.0D;
@@ -21,11 +21,11 @@ public class BasicTileCkg extends TileEntityKineticGenerator {
     protected final int MaxStorage;
     protected final double productionpeerkineticunit;
 
-    public BasicTileCkg() {
+    public KineticGeneratorTileEntity() {
         this(0);
     }
 
-    public BasicTileCkg(int type) {
+    public KineticGeneratorTileEntity(int type) {
         super();
         this.type = type;
 

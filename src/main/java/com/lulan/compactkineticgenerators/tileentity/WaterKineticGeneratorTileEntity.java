@@ -5,28 +5,28 @@ import net.minecraft.nbt.NBTTagCompound;
 import com.lulan.compactkineticgenerators.CompactKineticGenerators;
 import com.lulan.compactkineticgenerators.handler.ConfigHandler;
 
-import ic2.core.block.kineticgenerator.tileentity.TileEntityWindKineticGenerator;
+import ic2.core.block.kineticgenerator.tileentity.TileEntityWaterKineticGenerator;
 
-abstract public class BasicTileCkwm extends TileEntityWindKineticGenerator {
+public class WaterKineticGeneratorTileEntity extends TileEntityWaterKineticGenerator {
 
-    public int ckwmType, tick;
+    public int ckwaType, tick;
     protected float scaleOutput;
     protected float scaleDamage;
 
-    public BasicTileCkwm() {
+    public WaterKineticGeneratorTileEntity() {
         this(0);
     }
 
-    public BasicTileCkwm(int type) {
+    public WaterKineticGeneratorTileEntity(int type) {
         super();
-        this.ckwmType = type;
+        this.ckwaType = type;
         this.tick = 0;
 
         try {
-            this.scaleOutput = (float) ConfigHandler.scaleOutput[this.ckwmType];
-            this.scaleDamage = (float) ConfigHandler.scaleDamage[this.ckwmType];
+            this.scaleOutput = (float) ConfigHandler.scaleOutputWater[this.ckwaType];
+            this.scaleDamage = (float) ConfigHandler.scaleDamageWater[this.ckwaType];
         } catch (Exception e) {
-            CompactKineticGenerators.LOGGER.error("Failed to load wind mill scales for tier " + type, e);
+            CompactKineticGenerators.LOGGER.error("Failed to load water mill scales for tier " + type, e);
             this.scaleOutput = 1F;
             this.scaleDamage = 1F;
         }
@@ -37,13 +37,13 @@ abstract public class BasicTileCkwm extends TileEntityWindKineticGenerator {
     protected void updateEntityServer() {
         super.updateEntityServer();
 
-        if (this.tick++ % getTickRate() != 0 || getKuOutput() <= 0 || this.rotorSlot.isEmpty()) {
+        if (this.tick++ <= 20) {
             return;
         }
+        this.tick = 0;
 
-        double wind = calcWindStrength();
-        if (wind >= getMinWindStrength()) {
-            int multiplier = wind <= getMaxWindStrength() ? 1 : 4;
+        if (getKuOutput() > 0 && !this.rotorSlot.isEmpty()) {
+            int multiplier = this.type == 1 ? 2 : 1; // Ocean biomes double wear.
             this.rotorSlot.damage((int) (multiplier * this.scaleDamage), false);
         }
     }
@@ -57,7 +57,7 @@ abstract public class BasicTileCkwm extends TileEntityWindKineticGenerator {
     public void readFromNBT(NBTTagCompound nbt) {
         super.readFromNBT(nbt);
 
-        ckwmType = nbt.getInteger("type");
+        ckwaType = nbt.getInteger("ckwaType");
         scaleOutput = nbt.getFloat("scale");
         scaleDamage = nbt.getFloat("damage");
     }
@@ -66,7 +66,7 @@ abstract public class BasicTileCkwm extends TileEntityWindKineticGenerator {
     public void writeToNBT(NBTTagCompound nbt) {
         super.writeToNBT(nbt);
 
-        nbt.setInteger("type", ckwmType);
+        nbt.setInteger("ckwaType", ckwaType);
         nbt.setFloat("scale", scaleOutput);
         nbt.setFloat("damage", scaleDamage);
     }

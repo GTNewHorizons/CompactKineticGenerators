@@ -21,19 +21,19 @@ import net.minecraft.world.World;
 
 import com.lulan.compactkineticgenerators.CompactKineticGenerators;
 import com.lulan.compactkineticgenerators.reference.Reference;
-import com.lulan.compactkineticgenerators.tileentity.BasicTileCkg;
-import com.lulan.compactkineticgenerators.tileentity.TileCkgE;
-import com.lulan.compactkineticgenerators.tileentity.TileCkgH;
-import com.lulan.compactkineticgenerators.tileentity.TileCkgL;
-import com.lulan.compactkineticgenerators.tileentity.TileCkgM;
-import com.lulan.compactkineticgenerators.tileentity.TileCkwaE;
-import com.lulan.compactkineticgenerators.tileentity.TileCkwaH;
-import com.lulan.compactkineticgenerators.tileentity.TileCkwaL;
-import com.lulan.compactkineticgenerators.tileentity.TileCkwaM;
-import com.lulan.compactkineticgenerators.tileentity.TileCkwmE;
-import com.lulan.compactkineticgenerators.tileentity.TileCkwmH;
-import com.lulan.compactkineticgenerators.tileentity.TileCkwmL;
-import com.lulan.compactkineticgenerators.tileentity.TileCkwmM;
+import com.lulan.compactkineticgenerators.tileentity.ExtremeKineticGeneratorTileEntity;
+import com.lulan.compactkineticgenerators.tileentity.ExtremeWaterKineticGeneratorTileEntity;
+import com.lulan.compactkineticgenerators.tileentity.ExtremeWindKineticGeneratorTileEntity;
+import com.lulan.compactkineticgenerators.tileentity.HighKineticGeneratorTileEntity;
+import com.lulan.compactkineticgenerators.tileentity.HighWaterKineticGeneratorTileEntity;
+import com.lulan.compactkineticgenerators.tileentity.HighWindKineticGeneratorTileEntity;
+import com.lulan.compactkineticgenerators.tileentity.KineticGeneratorTileEntity;
+import com.lulan.compactkineticgenerators.tileentity.LowKineticGeneratorTileEntity;
+import com.lulan.compactkineticgenerators.tileentity.LowWaterKineticGeneratorTileEntity;
+import com.lulan.compactkineticgenerators.tileentity.LowWindKineticGeneratorTileEntity;
+import com.lulan.compactkineticgenerators.tileentity.MediumKineticGeneratorTileEntity;
+import com.lulan.compactkineticgenerators.tileentity.MediumWaterKineticGeneratorTileEntity;
+import com.lulan.compactkineticgenerators.tileentity.MediumWindKineticGeneratorTileEntity;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -134,20 +134,20 @@ public class BlockCkg extends BasicCkgContainer {
     public TileEntity createNewTileEntity(World world, int meta) {
         return switch (meta) {
             // wind mills
-            case 1 -> new TileCkwmM();
-            case 2 -> new TileCkwmH();
-            case 3 -> new TileCkwmE();
+            case 1 -> new MediumWindKineticGeneratorTileEntity();
+            case 2 -> new HighWindKineticGeneratorTileEntity();
+            case 3 -> new ExtremeWindKineticGeneratorTileEntity();
             // water mills
-            case 4 -> new TileCkwaL();
-            case 5 -> new TileCkwaM();
-            case 6 -> new TileCkwaH();
-            case 7 -> new TileCkwaE();
+            case 4 -> new LowWaterKineticGeneratorTileEntity();
+            case 5 -> new MediumWaterKineticGeneratorTileEntity();
+            case 6 -> new HighWaterKineticGeneratorTileEntity();
+            case 7 -> new ExtremeWaterKineticGeneratorTileEntity();
             // kinetic generators
-            case 8 -> new TileCkgL();
-            case 9 -> new TileCkgM();
-            case 10 -> new TileCkgH();
-            case 11 -> new TileCkgE();
-            default -> new TileCkwmL();
+            case 8 -> new LowKineticGeneratorTileEntity();
+            case 9 -> new MediumKineticGeneratorTileEntity();
+            case 10 -> new HighKineticGeneratorTileEntity();
+            case 11 -> new ExtremeKineticGeneratorTileEntity();
+            default -> new LowWindKineticGeneratorTileEntity();
         };
     }
 
@@ -241,7 +241,7 @@ public class BlockCkg extends BasicCkgContainer {
         TileEntity tile = world.getTileEntity(x, y, z);
 
         // unload from e-net
-        if (tile instanceof BasicTileCkg ckg) {
+        if (tile instanceof KineticGeneratorTileEntity ckg) {
             ckg.onBlockBreak(this, meta);
             ckg.onUnloaded();
         }
