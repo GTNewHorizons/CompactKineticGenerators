@@ -73,7 +73,7 @@ public class IridiumRotor extends BasicCkgItem implements IKineticRotor {
         info.add(
             StatCollector.translateToLocalFormatted(
                 "ic2.itemrotor.wind.info",
-                new Object[] { Integer.valueOf(this.minWindStrength), Integer.valueOf(this.maxWindStrength) }));
+                new Object[] {this.minWindStrength, this.maxWindStrength}));
 
         IKineticRotor.GearboxType type = null;
 
